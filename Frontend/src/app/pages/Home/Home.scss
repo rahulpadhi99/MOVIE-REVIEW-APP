@@ -1,0 +1,14 @@
+.search-container {
+  padding: 20px 36px;
+  display: flex;
+  gap: 36px;
+  place-content: center;
+  background-color: aqua;
+}
+
+.movie-container {
+  padding: 20px 36px;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 16px;
+}
