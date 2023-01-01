@@ -1,0 +1,16 @@
+.review-page-container {
+  padding: 18px 36px;
+  min-height: 640px;
+  text-align: center;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  .movie-detail-container {
+    width: 100%;
+    border: 1px solid;
+  }
+  .review-detail-container {
+    width: 50%;
+    border: 1px solid;
+  }
+}

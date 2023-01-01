@@ -11,11 +11,11 @@ const reviewSchema = new Schema(
       type: Number,
       required: true,
     },
-    // user: {
-    //   type: Schema.Types.ObjectId,
-    //   ref: "User",
-    //   required: true,
-    // },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
     movie: {
       type: Schema.Types.ObjectId,
       ref: "Movie",
