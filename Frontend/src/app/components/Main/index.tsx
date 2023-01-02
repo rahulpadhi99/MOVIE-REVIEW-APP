@@ -1,8 +1,8 @@
-import "./Main.scss";
 import IMainProps from "./Main";
+import { StyledMain } from "./styles";
 
 const Main = (props: IMainProps) => {
-  return <main className="main-container">{props.children}</main>;
+  return <StyledMain className="main-container">{props.children}</StyledMain>;
 };
 
 export default Main;

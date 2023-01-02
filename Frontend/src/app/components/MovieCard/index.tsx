@@ -1,5 +1,14 @@
-import "./MovieCard.scss";
 import IMovieCardProps from "./MovieCard";
+import {
+  StyledSpan,
+  MovieCardDiv,
+  ImagContainerDiv,
+  MovieTimeDiv,
+  MovieGenreDiv,
+  MovieReleaseDiv,
+  MovieNameDiv,
+  DetailsContainerDiv,
+} from "./styles";
 import Image from "../Image";
 
 const MovieCard = (props: IMovieCardProps) => {
@@ -9,34 +18,29 @@ const MovieCard = (props: IMovieCardProps) => {
     movieRelease,
     movieGenre,
     movieTime,
-    movieRating,
     onClick,
   } = props;
   return (
-    <div className="movie-card" onClick={onClick}>
-      <div className="movie-image-container">
+    <MovieCardDiv onClick={onClick}>
+      <ImagContainerDiv>
         <Image {...imageDetail} />
-      </div>
-      <div className="movie-details-container">
-        <div className="movie-name">{movieName}</div>
-        <div className="movie-time">
-          <span>Run Time : </span>
+      </ImagContainerDiv>
+      <DetailsContainerDiv>
+        <MovieNameDiv>{movieName}</MovieNameDiv>
+        <MovieTimeDiv>
+          <StyledSpan>Run Time : </StyledSpan>
           {movieTime}
-        </div>
-        <div className="movie-genre">
-          <span>Genre : </span>
+        </MovieTimeDiv>
+        <MovieGenreDiv>
+          <StyledSpan>Genre : </StyledSpan>
           {movieGenre}
-        </div>
-        <div className="movie-release">
-          <span>Release Date : </span>
+        </MovieGenreDiv>
+        <MovieReleaseDiv>
+          <StyledSpan>Release Date : </StyledSpan>
           {movieRelease}
-        </div>
-        <div className="movie-rating">
-          <span>Ratings : </span>
-          {movieRating}
-        </div>
-      </div>
-    </div>
+        </MovieReleaseDiv>
+      </DetailsContainerDiv>
+    </MovieCardDiv>
   );
 };
 export default MovieCard;

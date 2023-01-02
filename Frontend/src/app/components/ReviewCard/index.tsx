@@ -1,22 +1,32 @@
-import "./ReviewCard.scss";
 import IReviewCardProps from "./ReviewCard";
+import {
+  ReviewCardDiv,
+  UserContainerDiv,
+  UserImageDiv,
+  UserDetailDiv,
+  UserNameDiv,
+  UserEmailDiv,
+  ReviewContainerDiv,
+  ReviewRatingDiv,
+  ReviewDescriptionDiv,
+} from "./styles";
 
 const ReviewCard = (props: IReviewCardProps) => {
   const { user, description, ratings } = props;
   return (
-    <div className="review-card-container">
-      <div className="user-container">
-        <div className="user-image">R</div>
-        <div className="user-detail">
-          <div className="user-name">{user.name}</div>
-          <div className="user-email">{user.email}</div>
-        </div>
-      </div>
-      <div className="review-container">
-        <div className="review-rating">{ratings}</div>
-        <div className="review-description">{description}</div>
-      </div>
-    </div>
+    <ReviewCardDiv>
+      <UserContainerDiv>
+        <UserImageDiv>R</UserImageDiv>
+        <UserDetailDiv>
+          <UserNameDiv>{user.name}</UserNameDiv>
+          <UserEmailDiv>{user.email}</UserEmailDiv>
+        </UserDetailDiv>
+      </UserContainerDiv>
+      <ReviewContainerDiv>
+        <ReviewRatingDiv>{ratings}</ReviewRatingDiv>
+        <ReviewDescriptionDiv>{description}</ReviewDescriptionDiv>
+      </ReviewContainerDiv>
+    </ReviewCardDiv>
   );
 };
 

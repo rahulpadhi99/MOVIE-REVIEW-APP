@@ -1,8 +1,8 @@
-import "./Image.scss";
 import IImageProps from "./Image";
+import { StyledImage } from "./styles";
 
 const Image = (props: IImageProps) => {
-  return <img {...props}></img>;
+  return <StyledImage {...props}></StyledImage>;
 };
 
 export default Image;

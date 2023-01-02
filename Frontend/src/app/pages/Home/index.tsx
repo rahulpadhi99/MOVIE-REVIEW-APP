@@ -1,10 +1,17 @@
-import "./Home.scss";
 import IHomeProps from "./Home";
 import Layout from "../../components/Layout";
 import Select from "../../components/Select";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import MovieCard from "../../components/MovieCard";
+import {
+  SearchContainerDiv,
+  SearchMovieDiv,
+  SearchYearDiv,
+  SearchButtonDiv,
+  MovieContainerDiv,
+  MovieCardContainerDiv,
+} from "./styles";
 
 const Home = (props: IHomeProps) => {
   const movieData = [
@@ -46,31 +53,33 @@ const Home = (props: IHomeProps) => {
   const selectMovieHandler = (movie: any) => {
     console.log("movie selected", movie);
   };
+
   return (
     <>
       <Layout>
-        <div className="search-container">
-          <div className="search-movie">
+        <SearchContainerDiv className="search-container">
+          <SearchMovieDiv className="search-movie">
             <Input label="Movie : " name="movie" type="search" />
-          </div>
-          <div className="search-year">
+          </SearchMovieDiv>
+          <SearchYearDiv className="search-year">
             <Select
               label="Year : "
               name={"year"}
               options={["2020", "2021", "2022"]}
             />
-          </div>
-          <div className="search-button">
-            <Button onClick={() => console.log("search")}>Search</Button>
-          </div>
-        </div>
-        <div className="movie-container">
+          </SearchYearDiv>
+          <SearchButtonDiv className="search-button">
+            <Button kind={"primary"} onClick={() => console.log("search")}>
+              Search
+            </Button>
+          </SearchButtonDiv>
+        </SearchContainerDiv>
+        <MovieContainerDiv className="movie-container">
           {movieData.map((movie) => {
             return (
-              <div className="movie-card-container">
+              <MovieCardContainerDiv className="movie-card-container">
                 <MovieCard
                   imageDetail={{
-                    className: "movie-image",
                     src: movie.poster,
                     alt: "image.png",
                   }}
@@ -78,13 +87,12 @@ const Home = (props: IHomeProps) => {
                   movieRelease={movie.released}
                   movieGenre={movie.genre}
                   movieTime={movie.runTime}
-                  movieRating={movie.imdbRating}
                   onClick={() => selectMovieHandler(movie)}
                 />
-              </div>
+              </MovieCardContainerDiv>
             );
           })}
-        </div>
+        </MovieContainerDiv>
       </Layout>
     </>
   );

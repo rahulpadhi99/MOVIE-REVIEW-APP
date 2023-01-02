@@ -1,7 +1,7 @@
-import "./Review.scss";
 import IReviewProps from "./Review";
 import Layout from "../../components/Layout";
 import ReviewCard from "../../components/ReviewCard";
+import { ReviewContainerDiv, ReviewDetailDiv, MovieDetailDiv } from "./styles";
 
 const reviewData = [
   {
@@ -36,9 +36,11 @@ const Review = (props: IReviewProps) => {
   return (
     <>
       <Layout>
-        <div className="review-page-container">
-          <div className="movie-detail-container">Review</div>
-          <div className="review-detail-container">
+        <ReviewContainerDiv className="review-page-container">
+          <MovieDetailDiv className="movie-detail-container">
+            Review
+          </MovieDetailDiv>
+          <ReviewDetailDiv className="review-detail-container">
             Reviews
             {reviewData.map((review) => {
               return (
@@ -49,8 +51,8 @@ const Review = (props: IReviewProps) => {
                 />
               );
             })}
-          </div>
-        </div>
+          </ReviewDetailDiv>
+        </ReviewContainerDiv>
       </Layout>
     </>
   );

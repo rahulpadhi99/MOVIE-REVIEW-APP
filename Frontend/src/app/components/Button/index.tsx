@@ -1,12 +1,10 @@
-import "./Button.scss";
+import { StyledButton } from "./styles";
 import IButtonProps from "./Button";
 
 const Button = (props: IButtonProps) => {
   return (
     <>
-      <button className="button-component" {...props}>
-        {props.children}
-      </button>
+      <StyledButton {...props}>{props.children}</StyledButton>
     </>
   );
 };

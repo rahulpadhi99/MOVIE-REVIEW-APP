@@ -1,5 +1,5 @@
 export default interface ISelectCProps {
-  label: string;
   name: string;
-  options: string[];
+  options?: string[];
+  label?: string;
 }

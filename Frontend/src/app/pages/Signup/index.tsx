@@ -1,13 +1,13 @@
 import ISignpProps from "./Signup";
-import ButtonComponent from "../../components/Button";
+import Button from "../../components/Button";
 
 const Signup = (props: ISignpProps) => {
   return (
     <>
       <div>Sign Up</div>
-      <ButtonComponent onClick={() => console.log("clicked")}>
+      <Button kind={"primary"} onClick={() => console.log("clicked")}>
         Sign Up
-      </ButtonComponent>
+      </Button>
     </>
   );
 };

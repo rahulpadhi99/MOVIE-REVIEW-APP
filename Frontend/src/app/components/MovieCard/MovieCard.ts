@@ -6,6 +6,5 @@ export default interface IMovieCardProps {
   movieRelease: string;
   movieGenre: string;
   movieTime: string;
-  movieRating: string;
   onClick: () => void;
 }
