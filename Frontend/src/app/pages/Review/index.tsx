@@ -1,7 +1,29 @@
 import IReviewProps from "./Review";
 import Layout from "../../components/Layout";
 import ReviewCard from "../../components/ReviewCard";
-import { ReviewContainerDiv, ReviewDetailDiv, MovieDetailDiv } from "./styles";
+import {
+  ReviewContainerDiv,
+  ReviewDetailDiv,
+  MovieAndUserDetailDiv,
+  MovieDetailDiv,
+  UserDetailDiv,
+} from "./styles";
+import MovieDetailCard from "../../components/MovieDetailCard";
+
+const movieDetail = {
+  title: "Jug Jugg Jeeyo",
+  released: "24 Jun 2022",
+  plot: "Two couples from different generations confront their issues after marriage.",
+  actors: "Varun Dhawan, Anil Kapoor, Kiara Advani",
+  director: "Raj Mehta",
+  runTime: "148 min",
+  genre: "Comedy, Drama, Family",
+  poster:
+    "https://m.media-amazon.com/images/M/MV5BMTg5YjlkZmItZWZjOC00ZWQ5LTk2MjctYmI2ZGYzODY0N2ZmXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_SX300.jpg",
+  imdbRating: "6.2",
+  imdbID: "tt13449624",
+  boxOffice: "$1,033,000",
+};
 
 const reviewData = [
   {
@@ -36,11 +58,16 @@ const Review = (props: IReviewProps) => {
   return (
     <>
       <Layout>
-        <ReviewContainerDiv className="review-page-container">
-          <MovieDetailDiv className="movie-detail-container">
-            Review
-          </MovieDetailDiv>
-          <ReviewDetailDiv className="review-detail-container">
+        <ReviewContainerDiv>
+          <MovieAndUserDetailDiv>
+            <MovieDetailDiv>
+              <MovieDetailCard {...movieDetail} />
+            </MovieDetailDiv>
+            <UserDetailDiv>
+              {/* <MovieDetailCard {...movieDetail} />   */}
+            </UserDetailDiv>
+          </MovieAndUserDetailDiv>
+          <ReviewDetailDiv>
             Reviews
             {reviewData.map((review) => {
               return (

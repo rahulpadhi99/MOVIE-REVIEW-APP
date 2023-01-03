@@ -40,7 +40,6 @@ exports.updateReviews = (req, res, next) => {
   Review.findById(reviewId)
     .then((review) => {
       if (!review) {
-        console.log("errors");
         const error = new Error("No review found");
         error.statusCode = 401;
         throw error;

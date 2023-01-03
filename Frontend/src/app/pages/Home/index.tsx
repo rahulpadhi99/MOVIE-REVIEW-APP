@@ -50,9 +50,7 @@ const Home = (props: IHomeProps) => {
       updatedAt: "2023-01-01T08:22:58.605Z",
     },
   ];
-  const selectMovieHandler = (movie: any) => {
-    console.log("movie selected", movie);
-  };
+  const selectMovieHandler = (movie: any) => {};
 
   return (
     <>
@@ -69,7 +67,7 @@ const Home = (props: IHomeProps) => {
             />
           </SearchYearDiv>
           <SearchButtonDiv className="search-button">
-            <Button kind={"primary"} onClick={() => console.log("search")}>
+            <Button kind={"primary"} onClick={() => {}}>
               Search
             </Button>
           </SearchButtonDiv>
@@ -81,6 +79,7 @@ const Home = (props: IHomeProps) => {
                 <MovieCard
                   imageDetail={{
                     src: movie.poster,
+                    size: "small",
                     alt: "image.png",
                   }}
                   movieName={movie.title}

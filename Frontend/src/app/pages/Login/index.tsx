@@ -5,7 +5,7 @@ const Login = (props: ILoginProps) => {
   return (
     <>
       <div>Login Page</div>
-      <Button kind={"primary"} onClick={() => console.log("clicked")}>
+      <Button kind={"primary"} onClick={() => {}}>
         Login
       </Button>
     </>
