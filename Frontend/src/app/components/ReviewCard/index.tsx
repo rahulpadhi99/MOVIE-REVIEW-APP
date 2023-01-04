@@ -1,8 +1,8 @@
+import Avatar from "../Avatar";
 import IReviewCardProps from "./ReviewCard";
 import {
   ReviewCardDiv,
   UserContainerDiv,
-  UserImageDiv,
   UserDetailDiv,
   UserNameDiv,
   UserEmailDiv,
@@ -16,7 +16,7 @@ const ReviewCard = (props: IReviewCardProps) => {
   return (
     <ReviewCardDiv>
       <UserContainerDiv>
-        <UserImageDiv>R</UserImageDiv>
+        <Avatar></Avatar>
         <UserDetailDiv>
           <UserNameDiv>{user.name}</UserNameDiv>
           <UserEmailDiv>{user.email}</UserEmailDiv>

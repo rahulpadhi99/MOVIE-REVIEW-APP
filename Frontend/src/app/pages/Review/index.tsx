@@ -1,6 +1,7 @@
 import IReviewProps from "./Review";
 import Layout from "../../components/Layout";
 import ReviewCard from "../../components/ReviewCard";
+import UserCard from "../../components/UserCard";
 import {
   ReviewContainerDiv,
   ReviewDetailDiv,
@@ -64,7 +65,7 @@ const Review = (props: IReviewProps) => {
               <MovieDetailCard {...movieDetail} />
             </MovieDetailDiv>
             <UserDetailDiv>
-              {/* <MovieDetailCard {...movieDetail} />   */}
+              <UserCard />
             </UserDetailDiv>
           </MovieAndUserDetailDiv>
           <ReviewDetailDiv>
