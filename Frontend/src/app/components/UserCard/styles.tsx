@@ -11,11 +11,11 @@ export const UserEmailDiv = styled.div`
 
 export const UserReviewDetailDiv = styled.div`
   display: flex;
-  min-height: 207px;
 `;
 
 export const LastMonthReviewDiv = styled.div`
   display: flex;
+  height: 155px;
   place-content: center;
   align-items: center;
   width: 100%;

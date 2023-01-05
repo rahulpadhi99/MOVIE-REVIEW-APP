@@ -8,8 +8,13 @@ import {
   MovieAndUserDetailDiv,
   MovieDetailDiv,
   UserDetailDiv,
+  ReviewDataDiv,
+  ReviewForm,
 } from "./styles";
 import MovieDetailCard from "../../components/MovieDetailCard";
+import Input from "../../components/Input";
+import TextArea from "../../components/TextArea";
+import Button from "../../components/Button";
 
 const movieDetail = {
   title: "Jug Jugg Jeeyo",
@@ -53,6 +58,19 @@ const reviewData = [
     createdAt: "2023-01-01T16:02:01.317Z",
     updatedAt: "2023-01-01T16:02:01.317Z",
   },
+  {
+    _id: "63b1ae79b03488e10ab1c96d",
+    description: "A great and funny movie",
+    ratings: 4,
+    user: {
+      _id: "63b1ad664c77f7dfd2d95c9b",
+      email: "user@gmail.com",
+      name: "user-1",
+    },
+    movie: "63b142e2ba6769a14af61775",
+    createdAt: "2023-01-01T16:02:01.317Z",
+    updatedAt: "2023-01-01T16:02:01.317Z",
+  },
 ];
 
 const Review = (props: IReviewProps) => {
@@ -70,15 +88,30 @@ const Review = (props: IReviewProps) => {
           </MovieAndUserDetailDiv>
           <ReviewDetailDiv>
             Reviews
-            {reviewData.map((review) => {
-              return (
-                <ReviewCard
-                  user={review.user}
-                  description={review.description}
-                  ratings={review.ratings}
-                />
-              );
-            })}
+            <ReviewDataDiv>
+              {reviewData.map((review) => {
+                return (
+                  <ReviewCard
+                    user={review.user}
+                    description={review.description}
+                    ratings={review.ratings}
+                  />
+                );
+              })}
+            </ReviewDataDiv>
+            <ReviewForm>
+              Submit a review
+              <TextArea
+                name="review"
+                row="2"
+                column="4"
+                label="Comment"
+                placeholder="Write a review"
+              />
+              <Button kind="secondary" onClick={() => {}}>
+                Submit
+              </Button>
+            </ReviewForm>
           </ReviewDetailDiv>
         </ReviewContainerDiv>
       </Layout>

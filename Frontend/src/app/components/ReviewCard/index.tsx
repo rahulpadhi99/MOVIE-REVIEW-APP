@@ -23,7 +23,14 @@ const ReviewCard = (props: IReviewCardProps) => {
         </UserDetailDiv>
       </UserContainerDiv>
       <ReviewContainerDiv>
-        <ReviewRatingDiv>{ratings}</ReviewRatingDiv>
+        <ReviewRatingDiv>
+          <span className="fa fa-star checked"></span>
+          <span className="fa fa-star checked"></span>
+          <span className="fa fa-star checked"></span>
+          <span className="fa fa-star"></span>
+          <span className="fa fa-star"></span>
+          {ratings}
+        </ReviewRatingDiv>
         <ReviewDescriptionDiv>{description}</ReviewDescriptionDiv>
       </ReviewContainerDiv>
     </ReviewCardDiv>

@@ -9,7 +9,6 @@ const Input = (props: IInputProps) => {
         type={props.type}
         id={props.name}
         name={props.name}
-        className="input-component"
       ></StyledInput>
     </>
   );

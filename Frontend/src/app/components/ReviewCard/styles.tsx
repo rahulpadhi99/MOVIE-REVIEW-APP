@@ -10,15 +10,6 @@ export const UserContainerDiv = styled.div`
   gap: 16px;
 `;
 
-export const UserImageDiv = styled.div`
-  width: 45px;
-  height: 45px;
-  display: grid;
-  place-items: center;
-  border-radius: 100%;
-  background-color: rgb(236, 75, 102);
-`;
-
 export const UserDetailDiv = styled.div`
   text-align: left;
   width: 100%;
@@ -33,7 +24,7 @@ export const UserEmailDiv = styled.div`
 `;
 export const ReviewContainerDiv = styled.div`
   text-align: left;
-  padding-left: 16px;
+  padding: 8px 16px;
 `;
 
 export const ReviewRatingDiv = styled.div``;
