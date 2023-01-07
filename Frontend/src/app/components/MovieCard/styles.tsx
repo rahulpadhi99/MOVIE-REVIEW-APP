@@ -1,31 +1,71 @@
 import styled from "styled-components";
+import { device } from "../../constants/constants";
 
 export const StyledSpan = styled.span`
   font-weight: bold;
 `;
 
 export const MovieCardDiv = styled.div`
-  padding: 8px;
   cursor: pointer;
-  border: 2px solid;
   display: flex;
-  gap: 24px;
+  border: 1px solid;
+
+  @media ${device.mobile} {
+    padding: 2px;
+    gap: 8px;
+  }
+  @media ${device.tablet} {
+    padding: 4px;
+    gap: 10px;
+  }
+  @media ${device.laptop} {
+    padding: 8px;
+    gap: 16px;
+  }
+  @media ${device.desktop} {
+    padding: 8px;
+    gap: 16px;
+  }
 `;
 
 export const ImagContainerDiv = styled.div``;
-export const DetailsContainerDiv = styled.div``;
+export const DetailsContainerDiv = styled.div`
+  @media ${device.mobile} {
+    font-size: 10px;
+  }
+  @media ${device.tablet} {
+    font-size: 12px;
+  }
+  @media ${device.laptop} {
+    font-size: 14px;
+  }
+  @media ${device.desktop} {
+    font-size: 16px;
+    line-height: 24px;
+  }
+`;
 export const MovieNameDiv = styled.div`
-  font-size: 28px;
   font-weight: bold;
+
+  @media ${device.mobile} {
+    font-size: 16px;
+    padding-bottom: 8px;
+  }
+  @media ${device.tablet} {
+    font-size: 20px;
+    padding-bottom: 10px;
+  }
+  @media ${device.laptop} {
+    font-size: 24px;
+    padding-bottom: 12px;
+  }
+  @media ${device.desktop} {
+    font-size: 28px;
+    padding-bottom: 14px;
+  }
 `;
 
-export const MovieTimeDiv = styled.div`
-  padding-top: 6px;
-`;
+export const MovieTimeDiv = styled.div``;
 
-export const MovieGenreDiv = styled.div`
-  padding-top: 6px;
-`;
-export const MovieReleaseDiv = styled.div`
-  padding-top: 6px;
-`;
+export const MovieGenreDiv = styled.div``;
+export const MovieReleaseDiv = styled.div``;

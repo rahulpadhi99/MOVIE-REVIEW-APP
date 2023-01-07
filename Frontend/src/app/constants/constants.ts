@@ -9,12 +9,8 @@ export const size = {
 };
 
 export const device = {
-  mobileS: `(min-width: 320px)`,
-  mobileM: `(min-width: 375px)`,
-  mobileL: `(min-width: 425px)`,
+  mobile: `(min-width: 360px)`,
   tablet: `(min-width:768px)`,
-  laptop: `(min-width: 1024px)`,
-  laptopL: `(min-width: 1440px)`,
-  desktop: `(min-width: 2560px)`,
-  desktopL: `(min-width: 2560px)`,
+  laptop: `(min-width: 1065px)`,
+  desktop: `(min-width: 1540px)`,
 };
