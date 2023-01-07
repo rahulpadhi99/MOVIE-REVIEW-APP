@@ -15,7 +15,6 @@ export const UserReviewDetailDiv = styled.div`
 
 export const LastMonthReviewDiv = styled.div`
   display: flex;
-  height: 155px;
   place-content: center;
   align-items: center;
   width: 100%;

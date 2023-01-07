@@ -3,18 +3,23 @@ import Layout from "../../components/Layout";
 import ReviewCard from "../../components/ReviewCard";
 import UserCard from "../../components/UserCard";
 import {
+  ReviewTextFieldDiv,
   ReviewContainerDiv,
   ReviewDetailDiv,
-  MovieAndUserDetailDiv,
+  MovieAndAddReviewDiv,
   MovieDetailDiv,
-  UserDetailDiv,
   ReviewDataDiv,
-  ReviewForm,
+  ReviewFormDiv,
+  ReviewRatingDiv,
+  ReviewFormHeaderDiv,
+  ReviewDetailHeaderDiv,
+  ReviewSpanDiv,
+  StyledSpan,
 } from "./styles";
 import MovieDetailCard from "../../components/MovieDetailCard";
-import Input from "../../components/Input";
 import TextArea from "../../components/TextArea";
 import Button from "../../components/Button";
+import { useState } from "react";
 
 const movieDetail = {
   title: "Jug Jugg Jeeyo",
@@ -71,23 +76,59 @@ const reviewData = [
     createdAt: "2023-01-01T16:02:01.317Z",
     updatedAt: "2023-01-01T16:02:01.317Z",
   },
+  {
+    _id: "63b1ae79b03488e10ab1c96d",
+    description: "A great and funny movie",
+    ratings: 4,
+    user: {
+      _id: "63b1ad664c77f7dfd2d95c9b",
+      email: "user@gmail.com",
+      name: "user-1",
+    },
+    movie: "63b142e2ba6769a14af61775",
+    createdAt: "2023-01-01T16:02:01.317Z",
+    updatedAt: "2023-01-01T16:02:01.317Z",
+  },
 ];
 
 const Review = (props: IReviewProps) => {
+  const [checked, setChecked] = useState([false, false, false, false, false]);
   return (
     <>
       <Layout>
         <ReviewContainerDiv>
-          <MovieAndUserDetailDiv>
+          <MovieAndAddReviewDiv>
             <MovieDetailDiv>
               <MovieDetailCard {...movieDetail} />
             </MovieDetailDiv>
-            <UserDetailDiv>
-              <UserCard />
-            </UserDetailDiv>
-          </MovieAndUserDetailDiv>
+            <ReviewFormDiv>
+              <ReviewFormHeaderDiv>Submit a review</ReviewFormHeaderDiv>
+              <ReviewRatingDiv>
+                Submit Rating :
+                <ReviewSpanDiv>
+                  {checked.map((value) => {
+                    return (
+                      <StyledSpan className={`fa fa-star checked`}></StyledSpan>
+                    );
+                  })}
+                </ReviewSpanDiv>
+              </ReviewRatingDiv>
+              <ReviewTextFieldDiv>
+                <TextArea
+                  name="review"
+                  row="2"
+                  column="4"
+                  label="Comment : "
+                  placeholder="Write a review"
+                />
+              </ReviewTextFieldDiv>
+              <Button kind="secondary" onClick={() => {}}>
+                Submit
+              </Button>
+            </ReviewFormDiv>
+          </MovieAndAddReviewDiv>
           <ReviewDetailDiv>
-            Reviews
+            <ReviewDetailHeaderDiv>Reviews</ReviewDetailHeaderDiv>
             <ReviewDataDiv>
               {reviewData.map((review) => {
                 return (
@@ -99,19 +140,6 @@ const Review = (props: IReviewProps) => {
                 );
               })}
             </ReviewDataDiv>
-            <ReviewForm>
-              Submit a review
-              <TextArea
-                name="review"
-                row="2"
-                column="4"
-                label="Comment"
-                placeholder="Write a review"
-              />
-              <Button kind="secondary" onClick={() => {}}>
-                Submit
-              </Button>
-            </ReviewForm>
           </ReviewDetailDiv>
         </ReviewContainerDiv>
       </Layout>

@@ -1,3 +1,4 @@
+import AvatarComponent from "../Avatar";
 import IHeaderProps from "./Header";
 import { HeaderContainerDiv } from "./styles";
 
@@ -5,10 +6,10 @@ const Header = (props: IHeaderProps) => {
   return (
     <>
       <HeaderContainerDiv>
-        <div className="app-name-component">
-          <div>The Movie Review App</div>
-        </div>
-        <div className="avatar-component">RP</div>
+        <div>The Movie Review App</div>
+        <AvatarComponent width={45} height={45}>
+          RP
+        </AvatarComponent>
       </HeaderContainerDiv>
     </>
   );

@@ -5,7 +5,9 @@ import { StyledAvatar } from "./styles";
 const AvatarComponent = (props: IAvatarProps) => {
   return (
     <StyledAvatar>
-      <Avatar></Avatar>
+      <Avatar style={{ width: props.width, height: props.height }}>
+        {props.children}
+      </Avatar>
     </StyledAvatar>
   );
 };

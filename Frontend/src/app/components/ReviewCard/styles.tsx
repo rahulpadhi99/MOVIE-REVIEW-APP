@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+export const StyledSpan = styled.div`
+  font-size: 20px;
+  &.checked {
+    color: orange;
+  }
+`;
 export const ReviewCardDiv = styled.div`
   padding: 8px 16px;
   border-top: 1px solid;
@@ -24,7 +30,7 @@ export const UserEmailDiv = styled.div`
 `;
 export const ReviewContainerDiv = styled.div`
   text-align: left;
-  padding: 8px 16px;
+  padding: 8px 55px;
 `;
 
 export const ReviewRatingDiv = styled.div``;

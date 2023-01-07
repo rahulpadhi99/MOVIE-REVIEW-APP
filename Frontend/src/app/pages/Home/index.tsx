@@ -4,6 +4,7 @@ import Select from "../../components/Select";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import MovieCard from "../../components/MovieCard";
+import { useNavigate } from "react-router-dom";
 import {
   SearchContainerDiv,
   SearchMovieDiv,
@@ -14,6 +15,7 @@ import {
 } from "./styles";
 
 const Home = (props: IHomeProps) => {
+  const navigate = useNavigate();
   const movieData = [
     {
       _id: "63b142e2ba6769a14af61775",
@@ -50,7 +52,9 @@ const Home = (props: IHomeProps) => {
       updatedAt: "2023-01-01T08:22:58.605Z",
     },
   ];
-  const selectMovieHandler = (movie: any) => {};
+  const selectMovieHandler = (movie: any) => {
+    navigate("/review");
+  };
 
   return (
     <>
@@ -67,7 +71,12 @@ const Home = (props: IHomeProps) => {
             />
           </SearchYearDiv>
           <SearchButtonDiv className="search-button">
-            <Button kind={"primary"} onClick={() => {}}>
+            <Button
+              kind={"primary"}
+              onClick={() => {
+                console.log("ss");
+              }}
+            >
               Search
             </Button>
           </SearchButtonDiv>

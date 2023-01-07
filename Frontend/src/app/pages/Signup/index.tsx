@@ -1,14 +1,17 @@
 import ISignpProps from "./Signup";
-import Button from "../../components/Button";
+
+import Form from "../../components/Form";
+import { SignupContainerDiv } from "./styles";
 
 const Signup = (props: ISignpProps) => {
+  const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log("signup");
+  };
   return (
-    <>
-      <div>Sign Up</div>
-      <Button kind={"primary"} onClick={() => {}}>
-        Sign Up
-      </Button>
-    </>
+    <SignupContainerDiv>
+      <Form type="Sign Up" onSubmit={submitHandler}></Form>
+    </SignupContainerDiv>
   );
 };
 

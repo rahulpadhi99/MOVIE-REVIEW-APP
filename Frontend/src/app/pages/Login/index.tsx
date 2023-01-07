@@ -1,14 +1,17 @@
 import ILoginProps from "./Login";
-import Button from "../../components/Button";
+import Form from "../../components/Form";
+import { LoginContainerDiv } from "./styles";
+import React from "react";
 
 const Login = (props: ILoginProps) => {
+  const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log("login");
+  };
   return (
-    <>
-      <div>Login Page</div>
-      <Button kind={"primary"} onClick={() => {}}>
-        Login
-      </Button>
-    </>
+    <LoginContainerDiv>
+      <Form type="Login" onSubmit={submitHandler} />
+    </LoginContainerDiv>
   );
 };
 

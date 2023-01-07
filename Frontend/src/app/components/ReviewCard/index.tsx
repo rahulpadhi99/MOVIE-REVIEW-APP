@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Avatar from "../Avatar";
 import IReviewCardProps from "./ReviewCard";
 import {
@@ -9,14 +10,19 @@ import {
   ReviewContainerDiv,
   ReviewRatingDiv,
   ReviewDescriptionDiv,
+  StyledSpan,
 } from "./styles";
 
 const ReviewCard = (props: IReviewCardProps) => {
+  const [checked, setChecked] = useState([false, false, false, false, false]);
+
   const { user, description, ratings } = props;
   return (
     <ReviewCardDiv>
       <UserContainerDiv>
-        <Avatar></Avatar>
+        <Avatar width={36} height={36}>
+          R
+        </Avatar>
         <UserDetailDiv>
           <UserNameDiv>{user.name}</UserNameDiv>
           <UserEmailDiv>{user.email}</UserEmailDiv>
@@ -24,11 +30,9 @@ const ReviewCard = (props: IReviewCardProps) => {
       </UserContainerDiv>
       <ReviewContainerDiv>
         <ReviewRatingDiv>
-          <span className="fa fa-star checked"></span>
-          <span className="fa fa-star checked"></span>
-          <span className="fa fa-star checked"></span>
-          <span className="fa fa-star"></span>
-          <span className="fa fa-star"></span>
+          {checked.map((value) => {
+            return <StyledSpan className={`fa fa-star checked`}></StyledSpan>;
+          })}
           {ratings}
         </ReviewRatingDiv>
         <ReviewDescriptionDiv>{description}</ReviewDescriptionDiv>
