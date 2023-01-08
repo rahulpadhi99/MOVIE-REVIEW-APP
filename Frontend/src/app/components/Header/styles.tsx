@@ -7,31 +7,32 @@ export const HeaderContainerDiv = styled.div<IHeaderProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  @media ${device.mobile} {
+
+  @media ${device.mobile1} {
     padding: 4px 8px;
   }
-  @media ${device.tablet} {
+  @media ${device.tablet1} {
     padding: 8px 16px;
   }
-  @media ${device.laptop} {
-    padding: 12px 24px;
+  @media ${device.tablet4} {
+    padding: 8px 16px;
   }
-  @media ${device.desktop} {
+  @media ${device.tablet5} {
+    padding: 8px 16px;
+  }
+  @media ${device.desktop1} {
     padding: 16px 32px;
   }
 `;
 
 export const AppNameDiv = styled.div`
-  @media ${device.mobile} {
+  @media ${device.mobile1} {
     font-size: 18px;
   }
-  @media ${device.tablet} {
+  @media ${device.tablet1} {
     font-size: 24px;
   }
-  @media ${device.laptop} {
-    font-size: 30px;
-  }
-  @media ${device.desktop} {
+  @media ${device.desktop1} {
     font-size: 36px;
   }
 `;

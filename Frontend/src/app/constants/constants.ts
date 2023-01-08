@@ -1,16 +1,19 @@
-export const size = {
-  mobileS: "320px",
-  mobileM: "375px",
-  mobileL: "425px",
-  tablet: "768px",
-  laptop: "1024px",
-  laptopL: "1440px",
-  desktop: "2560px",
-};
-
 export const device = {
-  mobile: `(min-width: 360px)`,
-  tablet: `(min-width:768px)`,
-  laptop: `(min-width: 1065px)`,
-  desktop: `(min-width: 1540px)`,
+  mobile1: `(min-width: 360px) and (min-height: 640px)`,
+  mobile2: `(min-width: 360px) and (min-height: 780px)`,
+  mobile3: `(min-width: 360px) and (min-height: 800px) `,
+  mobile4: `(min-width: 390px) and (min-height: 844px)`,
+  mobile5: `(min-width: 414px) and (min-height: 896px)`,
+  tablet1: `(min-width: 601px) and (min-height: 962px)`,
+  tablet2: `(min-width: 768px) and (min-height: 1024px)`,
+  tablet3: `(min-width: 800px) and (min-height: 1280px)`,
+  tablet4: `(min-width: 962px) and (min-height: 601px)`,
+  tablet5: `(min-width: 1280px) and (min-height: 800px)`,
+  desktop1: `(min-width: 1282px) and (min-height: 720px)`,
+  desktop2: `(min-width: 1366px) and (min-height: 768px)`,
+  desktop3: `(min-width: 1440px) and (min-height: 900px)`,
+  desktop4: `(min-width: 1536px) and (min-height: 864px)`,
+  desktop5: `(min-width: 1600px) and (min-height: 900px)`,
+  desktop6: `(min-width: 1920px) and (min-height: 1080px)`,
+  desktop7: `(min-width: 1920px) and (max-width: 2240px)`,
 };

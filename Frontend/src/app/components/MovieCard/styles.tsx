@@ -10,19 +10,15 @@ export const MovieCardDiv = styled.div`
   display: flex;
   border: 1px solid;
 
-  @media ${device.mobile} {
+  @media ${device.mobile1} {
     padding: 2px;
     gap: 8px;
   }
-  @media ${device.tablet} {
+  @media ${device.tablet1} {
     padding: 4px;
     gap: 10px;
   }
-  @media ${device.laptop} {
-    padding: 8px;
-    gap: 16px;
-  }
-  @media ${device.desktop} {
+  @media ${device.desktop1} {
     padding: 8px;
     gap: 16px;
   }
@@ -30,16 +26,13 @@ export const MovieCardDiv = styled.div`
 
 export const ImagContainerDiv = styled.div``;
 export const DetailsContainerDiv = styled.div`
-  @media ${device.mobile} {
+  @media ${device.mobile1} {
     font-size: 10px;
   }
-  @media ${device.tablet} {
+  @media ${device.tablet1} {
     font-size: 12px;
   }
-  @media ${device.laptop} {
-    font-size: 14px;
-  }
-  @media ${device.desktop} {
+  @media ${device.desktop1} {
     font-size: 16px;
     line-height: 24px;
   }
@@ -47,19 +40,15 @@ export const DetailsContainerDiv = styled.div`
 export const MovieNameDiv = styled.div`
   font-weight: bold;
 
-  @media ${device.mobile} {
+  @media ${device.mobile1} {
     font-size: 16px;
     padding-bottom: 8px;
   }
-  @media ${device.tablet} {
+  @media ${device.tablet1} {
     font-size: 20px;
     padding-bottom: 10px;
   }
-  @media ${device.laptop} {
-    font-size: 24px;
-    padding-bottom: 12px;
-  }
-  @media ${device.desktop} {
+  @media ${device.desktop1} {
     font-size: 28px;
     padding-bottom: 14px;
   }

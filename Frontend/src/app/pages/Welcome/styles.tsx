@@ -2,21 +2,18 @@ import styled from "styled-components";
 import { device } from "../../constants/constants";
 
 export const WelcomeContainerDiv = styled.div`
-  min-height: 808px;
+  // min-height: 808px;
   text-align: center;
   display: flex;
   flex-direction: column;
   place-content: center;
-  @media ${device.mobile} {
+  @media ${device.mobile1} {
     font-size: 24px;
   }
-  @media ${device.tablet} {
-    font-size: 32px;
+  @media ${device.tablet1} {
+    font-size: 36px;
   }
-  @media ${device.laptop} {
-    font-size: 40px;
-  }
-  @media ${device.desktop} {
+  @media ${device.desktop1} {
     font-size: 48px;
   }
 `;
@@ -32,31 +29,25 @@ export const SignupMessageDiv = styled.div`
     color: orange;
   }
 
-  @media ${device.mobile} {
+  @media ${device.mobile1} {
     font-size: 12px;
   }
-  @media ${device.tablet} {
+  @media ${device.tablet1} {
     font-size: 16px;
   }
-  @media ${device.laptop} {
-    font-size: 20px;
-  }
-  @media ${device.desktop} {
+  @media ${device.desktop1} {
     font-size: 24px;
   }
 `;
 
 export const LoginMessageDiv = styled.div`
-  @media ${device.mobile} {
+  @media ${device.mobile1} {
     font-size: 12px;
   }
-  @media ${device.tablet} {
+  @media ${device.tablet1} {
     font-size: 16px;
   }
-  @media ${device.laptop} {
-    font-size: 20px;
-  }
-  @media ${device.desktop} {
+  @media ${device.desktop1} {
     font-size: 24px;
   }
 `;
