@@ -2,19 +2,24 @@ import styled from "styled-components";
 import { device } from "../../constants/constants";
 
 export const WelcomeContainerDiv = styled.div`
-  // min-height: 808px;
   text-align: center;
   display: flex;
   flex-direction: column;
   place-content: center;
   @media ${device.mobile1} {
-    font-size: 24px;
+    font-size: 20px;
   }
-  @media ${device.tablet1} {
-    font-size: 36px;
+  @media ${device.mobile2} {
+    font-size: 25px;
   }
-  @media ${device.desktop1} {
-    font-size: 48px;
+  @media ${device.tablet} {
+    font-size: 30px;
+  }
+  @media ${device.laptop} {
+    font-size: 35px;
+  }
+  @media ${device.desktop} {
+    font-size: 40px;
   }
 `;
 export const AppNameDiv = styled.div`
@@ -32,10 +37,16 @@ export const SignupMessageDiv = styled.div`
   @media ${device.mobile1} {
     font-size: 12px;
   }
-  @media ${device.tablet1} {
-    font-size: 16px;
+  @media ${device.mobile2} {
+    font-size: 15px;
   }
-  @media ${device.desktop1} {
+  @media ${device.tablet} {
+    font-size: 18px;
+  }
+  @media ${device.laptop} {
+    font-size: 21px;
+  }
+  @media ${device.desktop} {
     font-size: 24px;
   }
 `;
@@ -44,10 +55,16 @@ export const LoginMessageDiv = styled.div`
   @media ${device.mobile1} {
     font-size: 12px;
   }
-  @media ${device.tablet1} {
-    font-size: 16px;
+  @media ${device.mobile2} {
+    font-size: 15px;
   }
-  @media ${device.desktop1} {
+  @media ${device.tablet} {
+    font-size: 18px;
+  }
+  @media ${device.laptop} {
+    font-size: 21px;
+  }
+  @media ${device.desktop} {
     font-size: 24px;
   }
 `;

@@ -9,30 +9,23 @@ export const HeaderContainerDiv = styled.div<IHeaderProps>`
   justify-content: space-between;
 
   @media ${device.mobile1} {
-    padding: 4px 8px;
+    padding: 4px 6px;
+    font-size: 15px;
   }
-  @media ${device.tablet1} {
-    padding: 8px 16px;
+  @media ${device.mobile2} {
+    padding: 8px 12px;
+    font-size: 20px;
   }
-  @media ${device.tablet4} {
-    padding: 8px 16px;
+  @media ${device.tablet} {
+    padding: 12px 18px;
+    font-size: 25px;
   }
-  @media ${device.tablet5} {
-    padding: 8px 16px;
+  @media ${device.laptop} {
+    padding: 16px 24px;
+    font-size: 30px;
   }
-  @media ${device.desktop1} {
-    padding: 16px 32px;
-  }
-`;
-
-export const AppNameDiv = styled.div`
-  @media ${device.mobile1} {
-    font-size: 18px;
-  }
-  @media ${device.tablet1} {
-    font-size: 24px;
-  }
-  @media ${device.desktop1} {
-    font-size: 36px;
+  @media ${device.desktop} {
+    padding: 20px 30px;
+    font-size: 35px;
   }
 `;

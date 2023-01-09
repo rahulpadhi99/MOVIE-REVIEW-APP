@@ -8,18 +8,28 @@ export const StyledButton = styled.button<IButtonProps>`
     props.kind === "primary" ? "orange" : "white"};
 
   @media ${device.mobile1} {
-    font-size: 12px;
+    font-size: 10px;
     width: 60px;
-    height: 25px;
+    height: 20px;
   }
-  @media ${device.tablet1} {
+  @media ${device.mobile2} {
+    font-size: 12px;
+    width: 70px;
+    height: 24px;
+  }
+  @media ${device.tablet} {
     font-size: 14px;
     width: 80px;
-    height: 35px;
+    height: 27px;
   }
-  @media ${device.desktop1} {
+  @media ${device.laptop} {
+    font-size: 16px;
+    width: 90px;
+    height: 30px;
+  }
+  @media ${device.desktop} {
     font-size: 18px;
     width: 100px;
-    height: 40px;
+    height: 33px;
   }
 `;
