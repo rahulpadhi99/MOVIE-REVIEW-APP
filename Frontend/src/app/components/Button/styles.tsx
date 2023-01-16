@@ -9,18 +9,18 @@ export const StyledButton = styled.button<IButtonProps>`
 
   @media ${device.mobile1} {
     font-size: 10px;
-    width: 60px;
-    height: 20px;
+    width: 50px;
+    height: 15px;
   }
   @media ${device.mobile2} {
     font-size: 12px;
-    width: 70px;
-    height: 24px;
+    width: 60px;
+    height: 20px;
   }
   @media ${device.tablet} {
     font-size: 14px;
-    width: 80px;
-    height: 27px;
+    width: 70px;
+    height: 25px;
   }
   @media ${device.laptop} {
     font-size: 16px;
@@ -30,6 +30,6 @@ export const StyledButton = styled.button<IButtonProps>`
   @media ${device.desktop} {
     font-size: 18px;
     width: 100px;
-    height: 33px;
+    height: 40px;
   }
 `;

@@ -5,8 +5,6 @@ import { device } from "../../constants/constants";
 export const StyledMain = styled.main<IMainProps>`
   display: flex;
   flex-direction: column;
-  place-content: center;
-  align-items: center;
 
   @media ${device.mobile1} and (max-height: 750px) {
     min-height: 90vh;

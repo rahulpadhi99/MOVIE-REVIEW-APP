@@ -4,6 +4,7 @@ import { device } from "../../constants/constants";
 export const WelcomeContainerDiv = styled.div`
   text-align: center;
   display: flex;
+  min-height: inherit;
   flex-direction: column;
   place-content: center;
   @media ${device.mobile1} {

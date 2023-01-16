@@ -6,8 +6,7 @@ export const StyledLabel = styled.label`
 `;
 
 export const StyledTextArea = styled.textarea<ITextAreaProps>`
-  font-size: 18px;
-  width: 90%;
+  width: 80%;
   min-height: 100px;
   display: flex;
   border: 1px solid orange;

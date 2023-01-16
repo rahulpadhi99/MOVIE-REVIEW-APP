@@ -15,8 +15,8 @@ export const MovieCardDiv = styled.div`
 
 export const ImagContainerDiv = styled.div``;
 export const DetailsContainerDiv = styled.div`
-  font-size: 16px;
   line-height: 24px;
+  font-size: 16px;
 `;
 export const MovieNameDiv = styled.div`
   font-weight: bold;

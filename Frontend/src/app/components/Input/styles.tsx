@@ -28,7 +28,7 @@ export const StyledInput = styled.input<IInputProps>`
   }
   @media ${device.mobile2} {
     font-size: 12px;
-    width: 200px;
+    width: 150px;
     height: 20px;
   }
   @media ${device.tablet} {
