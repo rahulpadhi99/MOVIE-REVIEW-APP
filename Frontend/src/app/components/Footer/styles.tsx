@@ -7,9 +7,9 @@ export const FooterContainerDiv = styled.div<IFooterProps>`
   display: grid;
   text-align: center;
   place-content: center;
-  width: 100%;
-  position: fixed;
-  bottom: 0;
+  // width: 100%;
+  // position: fixed;
+  // bottom: 0;
   @media ${device.mobile1} {
     padding: 4px 6px;
     font-size: 8px;
@@ -23,11 +23,11 @@ export const FooterContainerDiv = styled.div<IFooterProps>`
     font-size: 12px;
   }
   @media ${device.laptop} {
-    padding: 10px 24px;
+    padding: 8px 24px;
     font-size: 16px;
   }
   @media ${device.desktop} {
-    padding: 12px 30px;
+    padding: 8px 30px;
     font-size: 20px;
   }
 `;

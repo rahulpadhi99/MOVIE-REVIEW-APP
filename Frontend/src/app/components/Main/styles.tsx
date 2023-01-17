@@ -49,7 +49,7 @@ export const StyledMain = styled.main<IMainProps>`
     min-height: 83vh;
   }
   @media ${device.laptop} and (min-height: 750px) {
-    min-height: 85vh;
+    min-height: 86.7vh;
   }
   @media ${device.laptop} and (min-height: 900px) {
     min-height: 87vh;
