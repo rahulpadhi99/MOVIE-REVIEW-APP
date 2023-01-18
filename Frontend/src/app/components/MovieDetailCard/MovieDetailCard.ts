@@ -1,4 +1,5 @@
 export default interface IMovieDetailCardProps {
+  _id: string;
   title: string;
   released: string;
   plot: string;
@@ -10,6 +11,8 @@ export default interface IMovieDetailCardProps {
   imdbRating: string;
   imdbID: string;
   boxOffice: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 const movieDetail = {

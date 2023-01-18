@@ -10,7 +10,7 @@ export const StyledMain = styled.main<IMainProps>`
     min-height: 90vh;
   }
   @media ${device.mobile1} and (min-height: 750px) {
-    min-height: 91vh;
+    min-height: 91.6vh;
   }
   @media ${device.mobile1} and (min-height: 900px) {
     min-height: 92vh;
@@ -23,7 +23,7 @@ export const StyledMain = styled.main<IMainProps>`
     min-height: 88vh;
   }
   @media ${device.mobile2} and (min-height: 750px) {
-    min-height: 90vh;
+    min-height: 89.9vh;
   }
   @media ${device.mobile2} and (min-height: 900px) {
     min-height: 91vh;
@@ -36,7 +36,7 @@ export const StyledMain = styled.main<IMainProps>`
     min-height: 88vh;
   }
   @media ${device.tablet} and (min-height: 750px) {
-    min-height: 89vh;
+    min-height: 88.3vh;
   }
   @media ${device.tablet} and (min-height: 900px) {
     min-height: 90vh;
@@ -62,7 +62,7 @@ export const StyledMain = styled.main<IMainProps>`
     min-height: 82vh;
   }
   @media ${device.desktop} and (min-height: 750px) {
-    min-height: 84vh;
+    min-height: 84.9vh;
   }
   @media ${device.desktop} and (min-height: 900px) {
     min-height: 86vh;

@@ -1,7 +1,6 @@
 import IReviewProps from "./Review";
 import Layout from "../../components/Layout";
 import ReviewCard from "../../components/ReviewCard";
-import UserCard from "../../components/UserCard";
 import {
   ReviewTextFieldDiv,
   ReviewContainerDiv,
@@ -27,21 +26,7 @@ import MovieDetailCard from "../../components/MovieDetailCard";
 import TextArea from "../../components/TextArea";
 import Button from "../../components/Button";
 import { useState } from "react";
-
-const movieDetail = {
-  title: "Jug Jugg Jeeyo",
-  released: "24 Jun 2022",
-  plot: "Two couples from different generations confront their issues after marriage.",
-  actors: "Varun Dhawan, Anil Kapoor, Kiara Advani",
-  director: "Raj Mehta",
-  runTime: "148 min",
-  genre: "Comedy, Drama, Family",
-  poster:
-    "https://m.media-amazon.com/images/M/MV5BMTg5YjlkZmItZWZjOC00ZWQ5LTk2MjctYmI2ZGYzODY0N2ZmXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_SX300.jpg",
-  imdbRating: "6.2",
-  imdbID: "tt13449624",
-  boxOffice: "$1,033,000",
-};
+import { useLocation } from "react-router-dom";
 
 const reviewData = [
   {
@@ -138,6 +123,10 @@ const reviewData = [
 ];
 
 const Review = (props: IReviewProps) => {
+  const location = useLocation();
+
+  const movieDetail = location?.state;
+  console.log(movieDetail);
   const [checked, setChecked] = useState([false, false, false, false, false]);
   return (
     <>
