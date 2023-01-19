@@ -1,16 +1,21 @@
-import ILoginProps from "./Login";
+import { useNavigate } from "react-router-dom";
 import Form from "../../components/Form";
+import ILoginProps, { IUser } from "./Login";
+import { loginUser } from "./Services";
 import { LoginContainerDiv } from "./styles";
-import React from "react";
 
 const Login = (props: ILoginProps) => {
-  const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log("login");
+  const navigate = useNavigate();
+  const submitHandler = (user: IUser) => {
+    loginUser(user)
+      .then((res) => {
+        navigate("/home");
+      })
+      .catch((err) => console.log(err));
   };
   return (
     <LoginContainerDiv>
-      <Form type="Login" onSubmit={submitHandler} />
+      <Form type="Login" submitHandler={submitHandler} />
     </LoginContainerDiv>
   );
 };

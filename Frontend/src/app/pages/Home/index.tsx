@@ -23,7 +23,9 @@ const Home = (props: IHomeProps) => {
   const selectMovieHandler = (movie: IAllMoviesData) => {
     navigate("/review", { state: movie });
   };
-
+  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(event.target.name, event.target.value);
+  };
   useEffect(() => {
     getAllMovies().then((res) => setAllMovieData(res?.data?.movies));
   }, []);
@@ -33,7 +35,13 @@ const Home = (props: IHomeProps) => {
       <Layout>
         <SearchContainerDiv className="search-container">
           <SearchMovieDiv className="search-movie">
-            <Input label="Movie : " name="movie" type="search" />
+            <Input
+              label="Movie : "
+              name="movie"
+              type="search"
+              value=""
+              onChange={changeHandler}
+            />
           </SearchMovieDiv>
           <SearchYearDiv className="search-year">
             <Select

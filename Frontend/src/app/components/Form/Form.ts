@@ -1,4 +1,10 @@
 export default interface IFormProps {
   type: string;
-  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  submitHandler: (user: IUser) => void;
+}
+
+export interface IUser {
+  name: string;
+  email: string;
+  password: string;
 }
