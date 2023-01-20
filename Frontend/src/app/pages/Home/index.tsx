@@ -20,12 +20,12 @@ import useQueryHook from "../../hooks/useQueryHook";
 const Home = (props: IHomeProps) => {
   const navigate = useNavigate();
   const [allMovieData, setAllMovieData] = useState<IAllMoviesData[]>();
-
+  const [canGetAllMovies, setCanGetAllMovies] = useState<boolean>(false);
   const { status, data, isLoading, error } = useQueryHook(
     ["getAllMovies"],
-    getAllMovies
+    getAllMovies,
+    { enabled: canGetAllMovies }
   );
-  console.log("result", status, data, error, isLoading);
 
   const selectMovieHandler = (movie: IAllMoviesData) => {
     navigate("/review", { state: movie });
@@ -34,9 +34,15 @@ const Home = (props: IHomeProps) => {
     console.log(event.target.name, event.target.value);
   };
   useEffect(() => {
-    getAllMovies().then((res) => setAllMovieData(res?.data?.movies));
-  }, []);
+    setCanGetAllMovies(true);
+    if (data?.status === 200) {
+      setAllMovieData(data?.movies);
+    } else {
+      console.log(error);
+    }
+  }, [isLoading]);
 
+  console.log("all", allMovieData);
   return (
     <>
       <Layout>

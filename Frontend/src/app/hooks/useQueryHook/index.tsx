@@ -12,15 +12,11 @@ const useQueryHook = (
   queryFunction: TQueryFunction,
   options?: TOptions
 ) => {
-  const result = useQuery<UseQueryResult<TData, TError>>(
+  const result = useQuery<UseQueryResult<TData, TError> | any>(
     queryKey,
     async () => {
-      try {
-        const { data } = await queryFunction();
-        return data;
-      } catch (error) {
-        return error;
-      }
+      const { data, ...rest } = await queryFunction();
+      return { ...data, ...rest };
     },
     options
   );
