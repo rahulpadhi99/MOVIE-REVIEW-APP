@@ -15,10 +15,17 @@ import {
   MovieCardContainerDiv,
 } from "./styles";
 import { getAllMovies } from "./Services";
+import useQueryHook from "../../hooks/useQueryHook";
 
 const Home = (props: IHomeProps) => {
   const navigate = useNavigate();
   const [allMovieData, setAllMovieData] = useState<IAllMoviesData[]>();
+
+  const { status, data, isLoading, error } = useQueryHook(
+    ["getAllMovies"],
+    getAllMovies
+  );
+  console.log("result", status, data, error, isLoading);
 
   const selectMovieHandler = (movie: IAllMoviesData) => {
     navigate("/review", { state: movie });
