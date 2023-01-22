@@ -8,7 +8,7 @@ export const SearchContainerDiv = styled.div`
   @media ${device.mobile1} {
     padding: 8px 12px;
     font-size: 15px;
-    gap: 12px;
+    gap: 4px;
   }
   @media ${device.mobile2} {
     padding: 8px 12px;
@@ -35,10 +35,25 @@ export const SearchMovieDiv = styled.div``;
 
 export const SearchYearDiv = styled.div``;
 
-export const SearchButtonDiv = styled.div`
+export const SearchAndAddButtonDiv = styled.div`
   @media ${device.mobile1} {
     display: flex;
+    gap: 10px;
     align-items: end;
+  }
+  @media ${device.mobile2} {
+    display: flex;
+    gap: 12px;
+    align-items: end;
+  }
+  @media ${device.tablet} {
+    gap: 16px;
+  }
+  @media ${device.laptop} {
+    gap: 20px;
+  }
+  @media ${device.desktop} {
+    gap: 24px;
   }
 `;
 

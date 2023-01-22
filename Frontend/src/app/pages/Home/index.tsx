@@ -10,7 +10,7 @@ import {
   SearchContainerDiv,
   SearchMovieDiv,
   SearchYearDiv,
-  SearchButtonDiv,
+  SearchAndAddButtonDiv,
   MovieContainerDiv,
   MovieCardContainerDiv,
 } from "./styles";
@@ -19,6 +19,7 @@ import useQueryHook from "../../hooks/useQueryHook";
 import Success from "../../components/Success";
 import Error from "../../components/Error";
 import Loading from "../../components/Loading";
+import Backdrop from "../../components/Backdrop";
 
 const Home = (props: IHomeProps) => {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ const Home = (props: IHomeProps) => {
   });
   const [canGetAllMovies, setCanGetAllMovies] = useState<boolean>(false);
   const [booleanStatus, setBooleanStatus] = useState(true);
+  const [open, setOpen] = useState(false);
   const {
     status,
     data: allMovieData,
@@ -40,6 +42,15 @@ const Home = (props: IHomeProps) => {
   const selectMovieHandler = (movie: IAllMoviesData) => {
     navigate("/review", { state: movie });
   };
+
+  const openAddUserBackDropHandler = () => {
+    setOpen(true);
+  };
+
+  const closeBackDropHandler = () => {
+    setOpen(false);
+  };
+
   const changeHandler = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -53,11 +64,12 @@ const Home = (props: IHomeProps) => {
     setBooleanStatus(false);
   }, []);
 
+  console.log("open", open);
   return (
     <>
       <Layout>
-        <SearchContainerDiv className="search-container">
-          <SearchMovieDiv className="search-movie">
+        <SearchContainerDiv>
+          <SearchMovieDiv>
             <Input
               label="Movie : "
               name="title"
@@ -66,7 +78,7 @@ const Home = (props: IHomeProps) => {
               onChange={changeHandler}
             />
           </SearchMovieDiv>
-          <SearchYearDiv className="search-year">
+          <SearchYearDiv>
             <Select
               label="Year : "
               name="year"
@@ -75,7 +87,7 @@ const Home = (props: IHomeProps) => {
               options={["2020", "2021", "2022"]}
             />
           </SearchYearDiv>
-          <SearchButtonDiv className="search-button">
+          <SearchAndAddButtonDiv>
             <Button
               kind={"primary"}
               onClick={() => {
@@ -84,17 +96,20 @@ const Home = (props: IHomeProps) => {
             >
               Search
             </Button>
-          </SearchButtonDiv>
+            <Button kind={"primary"} onClick={openAddUserBackDropHandler}>
+              Add Movie
+            </Button>
+          </SearchAndAddButtonDiv>
         </SearchContainerDiv>
         {status === "loading" && <Loading>Fetching Data....</Loading>}
         {status === "error" && <Error>Error Fetching Data....</Error>}
         {status === "success" && (
           <Success>
-            <MovieContainerDiv className="movie-container">
+            <MovieContainerDiv>
               {allMovieData?.movies?.map((movie: IAllMoviesData) => {
                 return (
                   <div>
-                    <MovieCardContainerDiv className="movie-card-container">
+                    <MovieCardContainerDiv>
                       <MovieCard
                         imageDetail={{
                           src: movie.poster,
@@ -114,6 +129,7 @@ const Home = (props: IHomeProps) => {
             </MovieContainerDiv>
           </Success>
         )}
+        <Backdrop open={open} onClick={closeBackDropHandler} />
       </Layout>
     </>
   );

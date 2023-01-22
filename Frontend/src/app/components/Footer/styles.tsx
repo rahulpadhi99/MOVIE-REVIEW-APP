@@ -7,9 +7,7 @@ export const FooterContainerDiv = styled.div<IFooterProps>`
   display: grid;
   text-align: center;
   place-content: center;
-  // width: 100%;
-  // position: fixed;
-  // bottom: 0;
+
   @media ${device.mobile1} {
     padding: 4px 6px;
     font-size: 8px;

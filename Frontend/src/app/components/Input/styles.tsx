@@ -23,7 +23,7 @@ export const StyledLabel = styled.label`
 export const StyledInput = styled.input<IInputProps>`
   @media ${device.mobile1} {
     font-size: 10px;
-    width: 150px;
+    width: 100px;
     height: 15px;
   }
   @media ${device.mobile2} {

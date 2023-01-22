@@ -27,7 +27,7 @@ export const StyledOption = styled.option`
 export const StyledSelect = styled.select<ISelectProps>`
   @media ${device.mobile1} {
     font-size: 10px;
-    width: 50px;
+    width: 48px;
     height: 15px;
   }
   @media ${device.mobile2} {
