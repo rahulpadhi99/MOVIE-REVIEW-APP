@@ -10,7 +10,9 @@ export type TData = unknown;
 export type TError = unknown;
 export type TQueryFnData = unknown;
 export type TQueryKey = QueryKey;
-export type TQueryFunction = () => Promise<AxiosResponse<any, any>>;
+export type TQueryFunction = (
+  functionParams: any
+) => Promise<AxiosResponse<any, any>>;
 export type TOptions =
   | Omit<
       UseQueryOptions<

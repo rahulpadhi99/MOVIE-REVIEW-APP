@@ -10,15 +10,20 @@ import {
 const useQueryHook = (
   queryKey: TQueryKey,
   queryFunction: TQueryFunction,
+  functionParams?: any,
   options?: TOptions
 ) => {
   const result = useQuery<UseQueryResult<TData, TError> | any>(
     queryKey,
     async () => {
-      const { data, ...rest } = await queryFunction();
-      return { ...data, ...rest };
+      try {
+        const { data, ...rest } = await queryFunction(functionParams);
+        return { ...data, ...rest };
+      } catch (error) {
+        return Promise.reject(error);
+      }
     },
-    options
+    { ...options, refetchOnWindowFocus: false }
   );
   return result;
 };

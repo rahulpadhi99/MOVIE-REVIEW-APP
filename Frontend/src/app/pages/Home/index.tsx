@@ -14,35 +14,45 @@ import {
   MovieContainerDiv,
   MovieCardContainerDiv,
 } from "./styles";
-import { getAllMovies } from "./Services";
+import { getMovies, IQueryData } from "./Services";
 import useQueryHook from "../../hooks/useQueryHook";
+import Success from "../../components/Success";
+import Error from "../../components/Error";
+import Loading from "../../components/Loading";
 
 const Home = (props: IHomeProps) => {
   const navigate = useNavigate();
-  const [allMovieData, setAllMovieData] = useState<IAllMoviesData[]>();
+  const [queryData, setQueryData] = useState<IQueryData>({
+    title: "",
+    year: "",
+  });
   const [canGetAllMovies, setCanGetAllMovies] = useState<boolean>(false);
-  const { status, data, isLoading, error } = useQueryHook(
-    ["getAllMovies"],
-    getAllMovies,
-    { enabled: canGetAllMovies }
-  );
+  const [booleanStatus, setBooleanStatus] = useState(true);
+  const {
+    status,
+    data: allMovieData,
+    refetch: retchMovies,
+    error,
+  } = useQueryHook(["getMovies"], getMovies, queryData, {
+    enabled: canGetAllMovies,
+  });
 
   const selectMovieHandler = (movie: IAllMoviesData) => {
     navigate("/review", { state: movie });
   };
-  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.name, event.target.value);
+  const changeHandler = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    setQueryData((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
   };
   useEffect(() => {
-    setCanGetAllMovies(true);
-    if (data?.status === 200) {
-      setAllMovieData(data?.movies);
-    } else {
-      console.log(error);
-    }
-  }, [isLoading]);
+    booleanStatus && setCanGetAllMovies(true);
+    setBooleanStatus(false);
+  }, []);
 
-  console.log("all", allMovieData);
   return (
     <>
       <Layout>
@@ -50,16 +60,18 @@ const Home = (props: IHomeProps) => {
           <SearchMovieDiv className="search-movie">
             <Input
               label="Movie : "
-              name="movie"
+              name="title"
               type="search"
-              value=""
+              value={queryData?.title}
               onChange={changeHandler}
             />
           </SearchMovieDiv>
           <SearchYearDiv className="search-year">
             <Select
               label="Year : "
-              name={"year"}
+              name="year"
+              value={queryData?.year}
+              onChange={changeHandler}
               options={["2020", "2021", "2022"]}
             />
           </SearchYearDiv>
@@ -67,33 +79,41 @@ const Home = (props: IHomeProps) => {
             <Button
               kind={"primary"}
               onClick={() => {
-                console.log("ss");
+                retchMovies();
               }}
             >
               Search
             </Button>
           </SearchButtonDiv>
         </SearchContainerDiv>
-        <MovieContainerDiv className="movie-container">
-          {allMovieData?.map((movie: IAllMoviesData) => {
-            return (
-              <MovieCardContainerDiv className="movie-card-container">
-                <MovieCard
-                  imageDetail={{
-                    src: movie.poster,
-                    size: "small",
-                    alt: "image.png",
-                  }}
-                  movieName={movie.title}
-                  movieRelease={movie.released}
-                  movieGenre={movie.genre}
-                  movieTime={movie.runTime}
-                  onClick={() => selectMovieHandler(movie)}
-                />
-              </MovieCardContainerDiv>
-            );
-          })}
-        </MovieContainerDiv>
+        {status === "loading" && <Loading>Fetching Data....</Loading>}
+        {status === "error" && <Error>Error Fetching Data....</Error>}
+        {status === "success" && (
+          <Success>
+            <MovieContainerDiv className="movie-container">
+              {allMovieData?.movies?.map((movie: IAllMoviesData) => {
+                return (
+                  <div>
+                    <MovieCardContainerDiv className="movie-card-container">
+                      <MovieCard
+                        imageDetail={{
+                          src: movie.poster,
+                          size: "small",
+                          alt: "image.png",
+                        }}
+                        movieName={movie.title}
+                        movieRelease={movie.released}
+                        movieGenre={movie.genre}
+                        movieTime={movie.runTime}
+                        onClick={() => selectMovieHandler(movie)}
+                      />
+                    </MovieCardContainerDiv>
+                  </div>
+                );
+              })}
+            </MovieContainerDiv>
+          </Success>
+        )}
       </Layout>
     </>
   );
