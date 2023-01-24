@@ -14,12 +14,13 @@ import {
   MovieContainerDiv,
   MovieCardContainerDiv,
 } from "./styles";
-import { getMovies, IQueryData } from "./Services";
+import { addMovie, getMovies, IQueryData } from "./Services";
 import useQueryHook from "../../hooks/useQueryHook";
 import Success from "../../components/Success";
 import Error from "../../components/Error";
 import Loading from "../../components/Loading";
 import Backdrop from "../../components/Backdrop";
+import useMutationHook from "../../hooks/useMutationHook";
 
 const Home = (props: IHomeProps) => {
   const navigate = useNavigate();
@@ -27,8 +28,17 @@ const Home = (props: IHomeProps) => {
     title: "",
     year: "",
   });
+
+  const getAllYears = () => {
+    let years = [];
+    const currentYear = new Date().getFullYear();
+    for (var i = 1990; i <= currentYear; i++) {
+      years.push(i);
+    }
+    return years;
+  };
+
   const [canGetAllMovies, setCanGetAllMovies] = useState<boolean>(false);
-  const [booleanStatus, setBooleanStatus] = useState(true);
   const [open, setOpen] = useState(false);
   const {
     status,
@@ -39,12 +49,22 @@ const Home = (props: IHomeProps) => {
     enabled: canGetAllMovies,
   });
 
+  const {
+    data,
+    error: mutationError,
+    mutate,
+  } = useMutationHook(["addMovie"], addMovie);
+
   const selectMovieHandler = (movie: IAllMoviesData) => {
     navigate("/review", { state: movie });
   };
 
   const openAddUserBackDropHandler = () => {
-    setOpen(true);
+    setQueryData({
+      title: "",
+      year: "",
+    });
+    setOpen(!open);
   };
 
   const closeBackDropHandler = () => {
@@ -59,12 +79,23 @@ const Home = (props: IHomeProps) => {
       [event.target.name]: event.target.value,
     }));
   };
-  useEffect(() => {
-    booleanStatus && setCanGetAllMovies(true);
-    setBooleanStatus(false);
-  }, []);
 
-  console.log("open", open);
+  const addMovieDataHandler = (movieData: IQueryData) => {
+    mutate(movieData, {
+      onSuccess: () => {
+        retchMovies();
+      },
+      onError: (error) => {
+        console.log(error);
+      },
+    });
+    setOpen(false);
+  };
+
+  useEffect(() => {
+    !open && setCanGetAllMovies(true);
+  }, [open]);
+
   return (
     <>
       <Layout>
@@ -84,7 +115,7 @@ const Home = (props: IHomeProps) => {
               name="year"
               value={queryData?.year}
               onChange={changeHandler}
-              options={["2020", "2021", "2022"]}
+              options={getAllYears()}
             />
           </SearchYearDiv>
           <SearchAndAddButtonDiv>
@@ -129,7 +160,11 @@ const Home = (props: IHomeProps) => {
             </MovieContainerDiv>
           </Success>
         )}
-        <Backdrop open={open} onClick={closeBackDropHandler} />
+        <Backdrop
+          open={open}
+          onClick={closeBackDropHandler}
+          addMovieData={addMovieDataHandler}
+        />
       </Layout>
     </>
   );

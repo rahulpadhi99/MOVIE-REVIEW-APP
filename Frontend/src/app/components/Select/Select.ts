@@ -4,6 +4,6 @@ export default interface ISelectCProps {
   name: string;
   value: string;
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-  options?: string[];
+  options?: number[];
   label?: string;
 }

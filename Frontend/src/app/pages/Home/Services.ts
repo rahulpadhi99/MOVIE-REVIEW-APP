@@ -13,3 +13,8 @@ export const getMovies = (queryData: IQueryData) => {
 
   return axios.get(url);
 };
+
+export const addMovie = (queryData: IQueryData) => {
+  let url = "http://localhost:8000/movies";
+  return axios.post(url, queryData);
+};

@@ -8,7 +8,6 @@ const Signup = (props: ISignpProps) => {
     signUpUser(user)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
-    console.log("signup-user", user);
   };
   return (
     <SignupContainerDiv>

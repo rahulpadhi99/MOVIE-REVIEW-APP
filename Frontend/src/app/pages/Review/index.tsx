@@ -126,7 +126,6 @@ const Review = (props: IReviewProps) => {
   const location = useLocation();
 
   const movieDetail = location?.state;
-  console.log(movieDetail);
   const [checked, setChecked] = useState([false, false, false, false, false]);
   return (
     <>

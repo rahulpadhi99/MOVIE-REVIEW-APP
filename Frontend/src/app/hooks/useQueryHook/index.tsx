@@ -20,6 +20,7 @@ const useQueryHook = (
         const { data, ...rest } = await queryFunction(functionParams);
         return { ...data, ...rest };
       } catch (error) {
+        console.log(error);
         return Promise.reject(error);
       }
     },

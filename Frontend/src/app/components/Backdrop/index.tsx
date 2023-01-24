@@ -1,6 +1,8 @@
-import { Backdrop } from "@mui/material";
 import Input from "../Input";
 import Button from "../Button";
+import Select from "../Select";
+import Icon from "../Icon";
+import { Backdrop } from "@mui/material";
 import { IBackDropProps } from "./Backdrop";
 import {
   BackDropDiv,
@@ -12,28 +14,56 @@ import {
   TitleDiv,
   CloseButtonDiv,
 } from "./styles";
-import Select from "../Select";
+import { useState } from "react";
+import { IQueryData } from "../../pages/Home/Services";
 
 const BackdropComponent = (props: IBackDropProps) => {
-  console.log("clicked", props);
   const { open, onClick } = props;
+  const [movieData, setMovieData] = useState<IQueryData>({
+    title: "",
+    year: "",
+  });
 
-  const changeHandler = () => {};
+  const getAllYears = () => {
+    let years = [];
+    const currentYear = new Date().getFullYear();
+    for (var i = 1990; i <= currentYear; i++) {
+      years.push(i);
+    }
+    return years;
+  };
+
+  const changeHandler = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    console.log(event.target.name, event.target.value);
+    setMovieData((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
+  };
+
+  const submitMovieHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    props.addMovieData(movieData);
+  };
   return (
     <BackDropDiv>
       <Backdrop className="backdrop" open={open}>
         <BackDropContentDiv>
           <TitleContainerDiv>
             <TitleDiv>Add a Movie</TitleDiv>
-            <CloseButtonDiv onClick={onClick}>close</CloseButtonDiv>
+            <CloseButtonDiv onClick={onClick}>
+              <Icon name="clear" />
+            </CloseButtonDiv>
           </TitleContainerDiv>
-          <form>
+          <form onSubmit={submitMovieHandler}>
             <MovieNameInputDiv>
               <Input
                 type="text"
-                name="name"
+                name="title"
                 label="Movie Name : "
-                value=" "
+                value={movieData?.title}
                 onChange={changeHandler}
               />
             </MovieNameInputDiv>
@@ -41,9 +71,9 @@ const BackdropComponent = (props: IBackDropProps) => {
               <Select
                 label="Release Year : "
                 name="year"
-                value=""
+                value={movieData?.year}
                 onChange={changeHandler}
-                options={["2020", "2021", "2022"]}
+                options={getAllYears()}
               />
             </MovieYearSelectDiv>
             <ButtonContainerDiv>

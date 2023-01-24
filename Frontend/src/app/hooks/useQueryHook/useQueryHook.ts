@@ -1,6 +1,5 @@
 import {
   QueryKey,
-  QueryFunction,
   UseQueryOptions,
   UseQueryResult,
 } from "@tanstack/react-query";
