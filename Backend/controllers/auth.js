@@ -6,6 +6,8 @@ exports.login = (req, res, next) => {
   const name = req.body.name;
   const password = req.body.password;
 
+  let loadedUser;
+
   User.findOne({ email: email })
     .then((user) => {
       if (!user) {
@@ -13,6 +15,7 @@ exports.login = (req, res, next) => {
         error.statusCode = 404;
         throw error;
       }
+      loadedUser = user;
       return bcrypt.compare(password, user.password);
     })
     .then((isEqual) => {
@@ -21,7 +24,10 @@ exports.login = (req, res, next) => {
         error.statusCode = 401;
         throw error;
       }
-      res.status(200).json({ message: "User login successfully" });
+      res.status(200).json({
+        message: "User login successfully",
+        userDetails: { name: loadedUser.name, email: loadedUser.email },
+      });
     })
     .catch((err) => {
       next(err);

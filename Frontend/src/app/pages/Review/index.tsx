@@ -25,8 +25,10 @@ import {
 import MovieDetailCard from "../../components/MovieDetailCard";
 import TextArea from "../../components/TextArea";
 import Button from "../../components/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import useQueryHook from "../../hooks/useQueryHook";
+import { getReviews } from "./Services";
 
 const reviewData = [
   {
@@ -124,9 +126,24 @@ const reviewData = [
 
 const Review = (props: IReviewProps) => {
   const location = useLocation();
-
   const movieDetail = location?.state;
+  console.log(movieDetail);
+  const [canGetAllReviews, setCanGetAllReviews] = useState(false);
   const [checked, setChecked] = useState([false, false, false, false, false]);
+
+  const {
+    status,
+    data: allReviewData,
+    refetch: retchReviews,
+    error,
+  } = useQueryHook(["getReviews"], getReviews, movieDetail?._id, {
+    enabled: canGetAllReviews,
+  });
+  console.log("data", allReviewData);
+
+  useEffect(() => {
+    setCanGetAllReviews(true);
+  }, [movieDetail?._id]);
   return (
     <>
       <Layout>
