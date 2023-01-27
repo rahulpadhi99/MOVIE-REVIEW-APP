@@ -5,8 +5,8 @@ import {
 } from "@tanstack/react-query";
 import { AxiosResponse } from "axios";
 
-export type TData = unknown;
-export type TError = unknown;
+export type TData = any;
+export type TError = any;
 export type TQueryFnData = unknown;
 export type TQueryKey = QueryKey;
 export type TQueryFunction = (

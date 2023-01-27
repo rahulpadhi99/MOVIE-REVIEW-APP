@@ -137,7 +137,7 @@ const Home = (props: IHomeProps) => {
         {status === "success" && (
           <Success>
             <MovieContainerDiv>
-              {allMovieData?.movies?.map((movie: IAllMoviesData) => {
+              {allMovieData?.map((movie: IAllMoviesData) => {
                 return (
                   <div>
                     <MovieCardContainerDiv>

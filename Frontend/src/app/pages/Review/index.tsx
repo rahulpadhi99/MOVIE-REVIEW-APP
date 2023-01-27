@@ -1,4 +1,4 @@
-import IReviewProps from "./Review";
+import IReviewProps, { IReviewDataProps } from "./Review";
 import Layout from "../../components/Layout";
 import ReviewCard from "../../components/ReviewCard";
 import {
@@ -28,122 +28,49 @@ import Button from "../../components/Button";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import useQueryHook from "../../hooks/useQueryHook";
-import { getReviews } from "./Services";
-
-const reviewData = [
-  {
-    _id: "63b1ae79b03488e10ab1c96d",
-    description: "A great and funny movie",
-    ratings: 4,
-    user: {
-      _id: "63b1ad664c77f7dfd2d95c9b",
-      email: "user@gmail.com",
-      name: "user-1",
-    },
-    movie: "63b142e2ba6769a14af61775",
-    createdAt: "2023-01-01T16:02:01.317Z",
-    updatedAt: "2023-01-01T16:02:01.317Z",
-  },
-  {
-    _id: "63b1ae79b03488e10ab1c96d",
-    description: "A great and funny movie",
-    ratings: 4,
-    user: {
-      _id: "63b1ad664c77f7dfd2d95c9b",
-      email: "user@gmail.com",
-      name: "user-1",
-    },
-    movie: "63b142e2ba6769a14af61775",
-    createdAt: "2023-01-01T16:02:01.317Z",
-    updatedAt: "2023-01-01T16:02:01.317Z",
-  },
-  {
-    _id: "63b1ae79b03488e10ab1c96d",
-    description: "A great and funny movie",
-    ratings: 4,
-    user: {
-      _id: "63b1ad664c77f7dfd2d95c9b",
-      email: "user@gmail.com",
-      name: "user-1",
-    },
-    movie: "63b142e2ba6769a14af61775",
-    createdAt: "2023-01-01T16:02:01.317Z",
-    updatedAt: "2023-01-01T16:02:01.317Z",
-  },
-  {
-    _id: "63b1ae79b03488e10ab1c96d",
-    description: "A great and funny movie",
-    ratings: 4,
-    user: {
-      _id: "63b1ad664c77f7dfd2d95c9b",
-      email: "user@gmail.com",
-      name: "user-1",
-    },
-    movie: "63b142e2ba6769a14af61775",
-    createdAt: "2023-01-01T16:02:01.317Z",
-    updatedAt: "2023-01-01T16:02:01.317Z",
-  },
-  {
-    _id: "63b1ae79b03488e10ab1c96d",
-    description: "A great and funny movie",
-    ratings: 4,
-    user: {
-      _id: "63b1ad664c77f7dfd2d95c9b",
-      email: "user@gmail.com",
-      name: "user-1",
-    },
-    movie: "63b142e2ba6769a14af61775",
-    createdAt: "2023-01-01T16:02:01.317Z",
-    updatedAt: "2023-01-01T16:02:01.317Z",
-  },
-  {
-    _id: "63b1ae79b03488e10ab1c96d",
-    description: "A great and funny movie",
-    ratings: 4,
-    user: {
-      _id: "63b1ad664c77f7dfd2d95c9b",
-      email: "user@gmail.com",
-      name: "user-1",
-    },
-    movie: "63b142e2ba6769a14af61775",
-    createdAt: "2023-01-01T16:02:01.317Z",
-    updatedAt: "2023-01-01T16:02:01.317Z",
-  },
-  {
-    _id: "63b1ae79b03488e10ab1c96d",
-    description: "A great and funny movie",
-    ratings: 4,
-    user: {
-      _id: "63b1ad664c77f7dfd2d95c9b",
-      email: "user@gmail.com",
-      name: "user-1",
-    },
-    movie: "63b142e2ba6769a14af61775",
-    createdAt: "2023-01-01T16:02:01.317Z",
-    updatedAt: "2023-01-01T16:02:01.317Z",
-  },
-];
+import { addReview, getReviews } from "./Services";
+import useMutationHook from "../../hooks/useMutationHook";
+import React from "react";
 
 const Review = (props: IReviewProps) => {
   const location = useLocation();
   const movieDetail = location?.state;
-  console.log(movieDetail);
+  const [allReviewData, setAllReviewData] = useState<IReviewDataProps[]>();
   const [canGetAllReviews, setCanGetAllReviews] = useState(false);
   const [checked, setChecked] = useState([false, false, false, false, false]);
 
-  const {
-    status,
-    data: allReviewData,
-    refetch: retchReviews,
-    error,
-  } = useQueryHook(["getReviews"], getReviews, movieDetail?._id, {
+  useQueryHook(["getReviews"], getReviews, movieDetail?._id, {
     enabled: canGetAllReviews,
+    onSuccess: (data: any) => {
+      setAllReviewData(data);
+    },
+    onError: (error: any) => {
+      console.log(error);
+    },
+    onSettled: () => {
+      setCanGetAllReviews(false);
+    },
   });
-  console.log("data", allReviewData);
+
+  const {
+    data,
+    error: mutationError,
+    mutate,
+  } = useMutationHook(["addReview"], addReview);
+
+  const positiveReviews = allReviewData?.filter((e) => e.ratings > 3);
+  const averageReviews = allReviewData?.filter((e) => e.ratings === 3);
+  const negativeReviews = allReviewData?.filter((e) => e.ratings < 3);
+
+  const submitRatingHandler = (
+    event: React.MouseEvent<HTMLDivElement>,
+    value: number
+  ) => {};
 
   useEffect(() => {
     setCanGetAllReviews(true);
   }, [movieDetail?._id]);
+
   return (
     <>
       <Layout>
@@ -155,17 +82,17 @@ const Review = (props: IReviewProps) => {
             <ReviewSummaryDiv>
               <ReviewSummaryHeaderDiv>Review Summary</ReviewSummaryHeaderDiv>
               <ReviewSummaryDetailDiv>
-                <TotalReviewDiv>50</TotalReviewDiv>
-                <PositiveReviewDiv>15</PositiveReviewDiv>
-                <AverageReviewDiv>30</AverageReviewDiv>
-                <NegativeReviewDiv>5</NegativeReviewDiv>
+                <TotalReviewDiv>{allReviewData?.length}</TotalReviewDiv>
+                <PositiveReviewDiv>{positiveReviews?.length}</PositiveReviewDiv>
+                <AverageReviewDiv>{averageReviews?.length}</AverageReviewDiv>
+                <NegativeReviewDiv>{negativeReviews?.length}</NegativeReviewDiv>
               </ReviewSummaryDetailDiv>
             </ReviewSummaryDiv>
           </MovieAndAddReviewDiv>
           <ReviewDetailDiv>
             <ReviewDetailHeaderDiv>Reviews</ReviewDetailHeaderDiv>
             <ReviewDataDiv>
-              {reviewData.map((review) => {
+              {allReviewData?.map((review) => {
                 return (
                   <ReviewCard
                     user={review.user}
@@ -180,9 +107,12 @@ const Review = (props: IReviewProps) => {
               <ReviewRatingDiv>
                 Submit Rating :
                 <ReviewSpanDiv>
-                  {checked.map((value) => {
+                  {checked.map((value, index) => {
                     return (
-                      <StyledSpan className={`fa fa-star checked`}></StyledSpan>
+                      <StyledSpan
+                        className={`fa fa-star ${value && "checked"}`}
+                        onClick={(event) => submitRatingHandler(event, index)}
+                      ></StyledSpan>
                     );
                   })}
                 </ReviewSpanDiv>

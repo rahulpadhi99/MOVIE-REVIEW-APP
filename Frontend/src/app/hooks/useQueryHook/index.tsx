@@ -16,13 +16,8 @@ const useQueryHook = (
   const result = useQuery<UseQueryResult<TData, TError> | any>(
     queryKey,
     async () => {
-      try {
-        const { data, ...rest } = await queryFunction(functionParams);
-        return { ...data, ...rest };
-      } catch (error) {
-        console.log(error);
-        return Promise.reject(error);
-      }
+      const { data } = await queryFunction(functionParams);
+      return data;
     },
     { ...options, refetchOnWindowFocus: false }
   );

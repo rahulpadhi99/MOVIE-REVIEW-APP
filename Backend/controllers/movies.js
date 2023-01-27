@@ -9,7 +9,7 @@ exports.getMovies = (req, res, next) => {
     released: year,
   })
     .then((movies) => {
-      res.status(200).json({ movies: movies });
+      res.status(200).json(movies);
     })
     .catch((error) => {
       error.statusCode = 500;

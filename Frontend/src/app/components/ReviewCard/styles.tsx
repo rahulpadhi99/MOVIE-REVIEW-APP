@@ -9,7 +9,7 @@ export const StyledSpan = styled.div`
 `;
 export const ReviewCardDiv = styled.div`
   padding: 0px 16px;
-  border-top: 1px solid;
+  border-bottom: 1px solid;
 `;
 export const UserContainerDiv = styled.div`
   display: flex;

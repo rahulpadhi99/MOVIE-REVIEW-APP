@@ -1,11 +1,12 @@
-interface IUserData {
-  _id: string;
-  email: string;
+export interface IUser {
   name: string;
+  email: string;
+  password: string;
+  _id?: string;
 }
 
 export default interface IReviewCardProps {
   description: string;
-  user: IUserData;
+  user: IUser;
   ratings: number;
 }

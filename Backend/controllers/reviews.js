@@ -4,8 +4,9 @@ const Review = require("../models/review");
 exports.getAllReviews = (req, res, next) => {
   const movieId = req.query.movieId;
   Review.find({ movie: movieId })
+    .populate("user")
     .then((reviews) => {
-      res.status(200).json({ reviews: reviews });
+      res.status(200).json(reviews);
     })
     .catch((error) => {
       error.statusCode = 500;
@@ -19,7 +20,7 @@ exports.postReviews = (req, res, next) => {
   const review = new Review({
     description: reviewDescription,
     ratings: reviewRatings,
-    user: mongoose.Types.ObjectId("63b1ad664c77f7dfd2d95c9b"),
+    user: mongoose.Types.ObjectId("63c989bd2cb03403b4441e88"),
     movie: mongoose.Types.ObjectId(movieId),
   });
   review

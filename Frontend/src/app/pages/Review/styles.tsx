@@ -31,7 +31,9 @@ export const MovieAndAddReviewDiv = styled.div`
 
 export const ReviewFormHeaderDiv = styled.div``;
 
-export const ReviewDetailHeaderDiv = styled.div``;
+export const ReviewDetailHeaderDiv = styled.div`
+  border-bottom: 1px solid;
+`;
 
 export const MovieDetailDiv = styled.div`
   border: 1px solid;
