@@ -1,7 +1,7 @@
 import React from "react";
 
 export default interface IAvatarProps {
-  width: number;
-  height: number;
+  size: string;
+  background: string;
   children?: React.ReactNode;
 }

@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
 const User = require("../models/user");
+const jwt = require("jsonwebtoken");
 
 exports.login = (req, res, next) => {
   const email = req.body.email;
@@ -24,9 +25,21 @@ exports.login = (req, res, next) => {
         error.statusCode = 401;
         throw error;
       }
+      const token = jwt.sign(
+        {
+          email: loadedUser.email,
+          userId: loadedUser._id.toString(),
+        },
+        "dreambigtoachievebig",
+        { expiresIn: "1h" }
+      );
       res.status(200).json({
         message: "User login successfully",
-        userDetails: { name: loadedUser.name, email: loadedUser.email },
+        userDetails: {
+          name: loadedUser.name,
+          email: loadedUser.email,
+          token: token,
+        },
       });
     })
     .catch((err) => {

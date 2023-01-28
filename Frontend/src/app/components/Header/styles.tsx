@@ -35,4 +35,21 @@ export const AppNameDiv = styled.div``;
 export const AvatarContainer = styled.div`
   display: flex;
   gap: 16px;
+  @media ${device.mobile1} {
+    font-size: 15px;
+  }
+  @media ${device.mobile2} {
+    font-size: 20px;
+  }
+  @media ${device.tablet} {
+    font-size: 25px;
+  }
+  @media ${device.laptop} {
+    font-size: 30px;
+  }
+  @media ${device.desktop} {
+    font-size: 35px;
+  }
 `;
+
+export const UserDiv = styled.div``;

@@ -39,7 +39,7 @@ export const MovieDetailDiv = styled.div`
   border: 1px solid;
 `;
 
-export const ReviewFormDiv = styled.div`
+export const ReviewForm = styled.form`
   text-align: center;
   font-size: 14px;
   @media ${device.mobile1} {
@@ -77,11 +77,6 @@ export const ReviewDataDiv = styled.div`
   height: 45vh;
   border-bottom: 1px solid;
 `;
-export const ReviewForm = styled.div`
-  padding: 8px;
-  display: flex;
-  flex-direction: column;
-`;
 
 export const ReviewSummaryDiv = styled.div`
   display: flex;
@@ -93,6 +88,24 @@ export const ReviewSummaryHeaderDiv = styled.div`
   border-bottom: 1px solid;
 `;
 
+export const TotalContentDiv = styled.div`
+  font-size: 24px;
+  color: grey;
+`;
+export const PositiveContentDiv = styled(TotalContentDiv)`
+  color: green;
+`;
+export const AverageContentDiv = styled(TotalContentDiv)`
+  color: #207894;
+`;
+export const NegativeContentDiv = styled(TotalContentDiv)`
+  color: red;
+`;
+
+export const CountDiv = styled.div`
+  margin-bottom: 8px;
+  font-size: 40px;
+`;
 export const ReviewSummaryDetailDiv = styled.div`
   display: grid;
   grid-template-columns: auto auto auto auto;

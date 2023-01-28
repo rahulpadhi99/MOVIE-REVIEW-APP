@@ -1,6 +1,15 @@
-import IReviewProps, { IReviewDataProps } from "./Review";
+import Rating from "../../components/Rating";
+import Button from "../../components/Button";
 import Layout from "../../components/Layout";
+import { useLocation } from "react-router-dom";
+import TextArea from "../../components/TextArea";
+import React, { useEffect, useState } from "react";
+import { addReview, getReviews } from "./Services";
+import useQueryHook from "../../hooks/useQueryHook";
 import ReviewCard from "../../components/ReviewCard";
+import useMutationHook from "../../hooks/useMutationHook";
+import IReviewProps, { IReviewDataProps, IReviewFormData } from "./Review";
+import MovieDetailCard from "../../components/MovieDetailCard";
 import {
   ReviewTextFieldDiv,
   ReviewContainerDiv,
@@ -8,11 +17,16 @@ import {
   MovieAndAddReviewDiv,
   MovieDetailDiv,
   ReviewDataDiv,
-  ReviewFormDiv,
+  ReviewForm,
   ReviewSummaryDiv,
   ReviewSummaryHeaderDiv,
   ReviewSummaryDetailDiv,
   TotalReviewDiv,
+  TotalContentDiv,
+  PositiveContentDiv,
+  AverageContentDiv,
+  NegativeContentDiv,
+  CountDiv,
   PositiveReviewDiv,
   AverageReviewDiv,
   ReviewRatingDiv,
@@ -20,55 +34,73 @@ import {
   ReviewFormHeaderDiv,
   ReviewDetailHeaderDiv,
   ReviewSpanDiv,
-  StyledSpan,
 } from "./styles";
-import MovieDetailCard from "../../components/MovieDetailCard";
-import TextArea from "../../components/TextArea";
-import Button from "../../components/Button";
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import useQueryHook from "../../hooks/useQueryHook";
-import { addReview, getReviews } from "./Services";
-import useMutationHook from "../../hooks/useMutationHook";
-import React from "react";
+import Avatar from "../../components/Avatar";
 
 const Review = (props: IReviewProps) => {
   const location = useLocation();
   const movieDetail = location?.state;
-  const [allReviewData, setAllReviewData] = useState<IReviewDataProps[]>();
+  const intialValue: IReviewFormData = {
+    movieId: "",
+    ratings: null,
+    description: "",
+  };
   const [canGetAllReviews, setCanGetAllReviews] = useState(false);
-  const [checked, setChecked] = useState([false, false, false, false, false]);
+  const [reviewFormData, setReviewFormData] =
+    useState<IReviewFormData>(intialValue);
+  const [allReviewData, setAllReviewData] = useState<IReviewDataProps[]>();
 
-  useQueryHook(["getReviews"], getReviews, movieDetail?._id, {
-    enabled: canGetAllReviews,
-    onSuccess: (data: any) => {
-      setAllReviewData(data);
-    },
-    onError: (error: any) => {
-      console.log(error);
-    },
-    onSettled: () => {
-      setCanGetAllReviews(false);
-    },
-  });
+  const { refetch: refetchAllReviews } = useQueryHook(
+    ["getReviews"],
+    getReviews,
+    movieDetail?._id,
+    {
+      enabled: canGetAllReviews,
+      onSuccess: (data: any) => {
+        setAllReviewData(data);
+      },
+      onError: (error: any) => {
+        console.log(error);
+      },
+      onSettled: () => {
+        setCanGetAllReviews(false);
+      },
+    }
+  );
 
-  const {
-    data,
-    error: mutationError,
-    mutate,
-  } = useMutationHook(["addReview"], addReview);
+  const { mutate } = useMutationHook(["addReview"], addReview);
 
   const positiveReviews = allReviewData?.filter((e) => e.ratings > 3);
   const averageReviews = allReviewData?.filter((e) => e.ratings === 3);
   const negativeReviews = allReviewData?.filter((e) => e.ratings < 3);
 
   const submitRatingHandler = (
-    event: React.MouseEvent<HTMLDivElement>,
-    value: number
-  ) => {};
+    event: React.SyntheticEvent<Element, Event>,
+    value: number | null
+  ) => {
+    setReviewFormData((prev) => ({ ...prev, ratings: value }));
+  };
+
+  const submitReviewHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    mutate(reviewFormData, {
+      onSuccess: () => {
+        refetchAllReviews();
+        setReviewFormData(intialValue);
+      },
+      onError: (error) => {
+        console.log(error);
+      },
+    });
+  };
+
+  const textChangeHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setReviewFormData((prev) => ({ ...prev, description: event.target.value }));
+  };
 
   useEffect(() => {
     setCanGetAllReviews(true);
+    setReviewFormData((prev) => ({ ...prev, movieId: movieDetail?._id }));
   }, [movieDetail?._id]);
 
   return (
@@ -82,10 +114,38 @@ const Review = (props: IReviewProps) => {
             <ReviewSummaryDiv>
               <ReviewSummaryHeaderDiv>Review Summary</ReviewSummaryHeaderDiv>
               <ReviewSummaryDetailDiv>
-                <TotalReviewDiv>{allReviewData?.length}</TotalReviewDiv>
-                <PositiveReviewDiv>{positiveReviews?.length}</PositiveReviewDiv>
-                <AverageReviewDiv>{averageReviews?.length}</AverageReviewDiv>
-                <NegativeReviewDiv>{negativeReviews?.length}</NegativeReviewDiv>
+                <TotalReviewDiv>
+                  <Avatar size="150px" background="orange">
+                    <TotalContentDiv>
+                      <CountDiv>{allReviewData?.length}</CountDiv>
+                      Total
+                    </TotalContentDiv>
+                  </Avatar>
+                </TotalReviewDiv>
+                <PositiveReviewDiv>
+                  <Avatar size="150px" background="orange">
+                    <PositiveContentDiv>
+                      <CountDiv>{positiveReviews?.length}</CountDiv>
+                      Positive
+                    </PositiveContentDiv>
+                  </Avatar>
+                </PositiveReviewDiv>
+                <AverageReviewDiv>
+                  <Avatar size="150px" background="orange">
+                    <AverageContentDiv>
+                      <CountDiv>{averageReviews?.length}</CountDiv>
+                      Average
+                    </AverageContentDiv>
+                  </Avatar>
+                </AverageReviewDiv>
+                <NegativeReviewDiv>
+                  <Avatar size="150px" background="orange">
+                    <NegativeContentDiv>
+                      <CountDiv>{negativeReviews?.length}</CountDiv>
+                      Negative
+                    </NegativeContentDiv>
+                  </Avatar>
+                </NegativeReviewDiv>
               </ReviewSummaryDetailDiv>
             </ReviewSummaryDiv>
           </MovieAndAddReviewDiv>
@@ -102,34 +162,31 @@ const Review = (props: IReviewProps) => {
                 );
               })}
             </ReviewDataDiv>
-            <ReviewFormDiv>
+            <ReviewForm onSubmit={submitReviewHandler}>
               <ReviewFormHeaderDiv>Submit a review</ReviewFormHeaderDiv>
               <ReviewRatingDiv>
                 Submit Rating :
                 <ReviewSpanDiv>
-                  {checked.map((value, index) => {
-                    return (
-                      <StyledSpan
-                        className={`fa fa-star ${value && "checked"}`}
-                        onClick={(event) => submitRatingHandler(event, index)}
-                      ></StyledSpan>
-                    );
-                  })}
+                  <Rating
+                    size="large"
+                    value={reviewFormData?.ratings}
+                    onChange={submitRatingHandler}
+                  />
                 </ReviewSpanDiv>
               </ReviewRatingDiv>
               <ReviewTextFieldDiv>
                 <TextArea
-                  name="review"
                   row="2"
                   column="4"
+                  name="review"
                   label="Comment : "
                   placeholder="Write a review"
+                  onChange={textChangeHandler}
+                  value={reviewFormData?.description}
                 />
               </ReviewTextFieldDiv>
-              <Button kind="secondary" onClick={() => {}}>
-                Submit
-              </Button>
-            </ReviewFormDiv>
+              <Button kind="secondary">Submit</Button>
+            </ReviewForm>
           </ReviewDetailDiv>
         </ReviewContainerDiv>
       </Layout>

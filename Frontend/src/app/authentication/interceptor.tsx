@@ -8,6 +8,9 @@ const instance = axios.create({
 });
 instance.interceptors.request.use(
   (request) => {
+    const user = sessionStorage.getItem("user");
+    const authenticationToken = user && JSON.parse(user)?.token;
+    request.headers["Authorization"] = "Bearer " + authenticationToken;
     // Do something before request is sent
     return request;
   },

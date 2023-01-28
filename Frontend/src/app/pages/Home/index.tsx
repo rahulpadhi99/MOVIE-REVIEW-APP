@@ -49,11 +49,7 @@ const Home = (props: IHomeProps) => {
     enabled: canGetAllMovies,
   });
 
-  const {
-    data,
-    error: mutationError,
-    mutate,
-  } = useMutationHook(["addMovie"], addMovie);
+  const { mutate } = useMutationHook(["addMovie"], addMovie);
 
   const selectMovieHandler = (movie: IAllMoviesData) => {
     navigate("/review", { state: movie });
