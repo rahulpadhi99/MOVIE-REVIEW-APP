@@ -9,15 +9,15 @@ export const HeaderContainerDiv = styled.div<IHeaderProps>`
   justify-content: space-between;
 
   @media ${device.mobile1} {
-    padding: 4px 6px;
+    padding: 6px 24px;
     font-size: 15px;
   }
   @media ${device.mobile2} {
-    padding: 8px 12px;
+    padding: 10px 24px;
     font-size: 20px;
   }
   @media ${device.tablet} {
-    padding: 12px 18px;
+    padding: 14px 24px;
     font-size: 25px;
   }
   @media ${device.laptop} {
@@ -25,7 +25,7 @@ export const HeaderContainerDiv = styled.div<IHeaderProps>`
     font-size: 30px;
   }
   @media ${device.desktop} {
-    padding: 20px 30px;
+    padding: 20px 36px;
     font-size: 35px;
   }
 `;
@@ -34,7 +34,26 @@ export const AppNameDiv = styled.div``;
 
 export const AvatarContainer = styled.div`
   display: flex;
-  gap: 16px;
+  @media ${device.mobile1} {
+    gap: 8px;
+  }
+  @media ${device.mobile2} {
+    gap: 10px;
+  }
+  @media ${device.tablet} {
+    gap: 12px;
+  }
+  @media ${device.laptop} {
+    gap: 14px;
+  }
+  @media ${device.desktop} {
+    gap: 16px;
+  }
+`;
+
+export const UserNameDiv = styled.div`
+  display: grid;
+  place-content: center;
   @media ${device.mobile1} {
     font-size: 15px;
   }
@@ -51,5 +70,3 @@ export const AvatarContainer = styled.div`
     font-size: 35px;
   }
 `;
-
-export const UserDiv = styled.div``;

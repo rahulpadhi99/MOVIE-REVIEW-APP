@@ -6,21 +6,21 @@ const instance = axios.create({
     Accept: "application/json",
   },
 });
+
+// Request Interceptor
 instance.interceptors.request.use(
   (request) => {
     const user = sessionStorage.getItem("user");
     const authenticationToken = user && JSON.parse(user)?.token;
     request.headers["Authorization"] = "Bearer " + authenticationToken;
-    // Do something before request is sent
     return request;
   },
   (error) => {
-    // Do something with request error
     return Promise.reject(error);
   }
 );
 
-// Add a response interceptor
+// Response Interceptor
 instance.interceptors.response.use(
   (response) => {
     // Any status code that lie within the range of 2xx cause this function to trigger

@@ -59,9 +59,7 @@ const Review = (props: IReviewProps) => {
       onSuccess: (data: any) => {
         setAllReviewData(data);
       },
-      onError: (error: any) => {
-        console.log(error);
-      },
+      onError: (error: any) => {},
       onSettled: () => {
         setCanGetAllReviews(false);
       },
@@ -88,9 +86,7 @@ const Review = (props: IReviewProps) => {
         refetchAllReviews();
         setReviewFormData(intialValue);
       },
-      onError: (error) => {
-        console.log(error);
-      },
+      onError: (error) => {},
     });
   };
 
@@ -102,7 +98,7 @@ const Review = (props: IReviewProps) => {
     setCanGetAllReviews(true);
     setReviewFormData((prev) => ({ ...prev, movieId: movieDetail?._id }));
   }, [movieDetail?._id]);
-
+  //150px
   return (
     <>
       <Layout>
@@ -115,7 +111,7 @@ const Review = (props: IReviewProps) => {
               <ReviewSummaryHeaderDiv>Review Summary</ReviewSummaryHeaderDiv>
               <ReviewSummaryDetailDiv>
                 <TotalReviewDiv>
-                  <Avatar size="150px" background="orange">
+                  <Avatar name="count" background="orange">
                     <TotalContentDiv>
                       <CountDiv>{allReviewData?.length}</CountDiv>
                       Total
@@ -123,7 +119,7 @@ const Review = (props: IReviewProps) => {
                   </Avatar>
                 </TotalReviewDiv>
                 <PositiveReviewDiv>
-                  <Avatar size="150px" background="orange">
+                  <Avatar name="count" background="orange">
                     <PositiveContentDiv>
                       <CountDiv>{positiveReviews?.length}</CountDiv>
                       Positive
@@ -131,7 +127,7 @@ const Review = (props: IReviewProps) => {
                   </Avatar>
                 </PositiveReviewDiv>
                 <AverageReviewDiv>
-                  <Avatar size="150px" background="orange">
+                  <Avatar name="count" background="orange">
                     <AverageContentDiv>
                       <CountDiv>{averageReviews?.length}</CountDiv>
                       Average
@@ -139,7 +135,7 @@ const Review = (props: IReviewProps) => {
                   </Avatar>
                 </AverageReviewDiv>
                 <NegativeReviewDiv>
-                  <Avatar size="150px" background="orange">
+                  <Avatar name="count" background="orange">
                     <NegativeContentDiv>
                       <CountDiv>{negativeReviews?.length}</CountDiv>
                       Negative

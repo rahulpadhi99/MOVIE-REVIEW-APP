@@ -89,8 +89,19 @@ export const ReviewSummaryHeaderDiv = styled.div`
 `;
 
 export const TotalContentDiv = styled.div`
-  font-size: 24px;
   color: grey;
+  @media ${device.mobile1} {
+    font-size: 16px;
+  }
+  @media ${device.mobile2} {
+    font-size: 18px;
+  }
+  @media ${device.laptop} {
+    font-size: 20px;
+  }
+  @media ${device.desktop} {
+    font-size: 24px;
+  }
 `;
 export const PositiveContentDiv = styled(TotalContentDiv)`
   color: green;
@@ -104,17 +115,28 @@ export const NegativeContentDiv = styled(TotalContentDiv)`
 
 export const CountDiv = styled.div`
   margin-bottom: 8px;
-  font-size: 40px;
+  @media ${device.mobile1} {
+    font-size: 24px;
+  }
+  @media ${device.mobile2} {
+    font-size: 28px;
+  }
+  @media ${device.laptop} {
+    font-size: 32px;
+  }
+  @media ${device.desktop} {
+    font-size: 36px;
+  }
 `;
 export const ReviewSummaryDetailDiv = styled.div`
   display: grid;
   grid-template-columns: auto auto auto auto;
 
   @media ${device.mobile1} {
-    min-height: 12vh;
+    min-height: 20vh;
   }
   @media ${device.mobile2} {
-    min-height: 12vh;
+    min-height: 20vh;
   }
   @media ${device.laptop} {
     min-height: 27vh;

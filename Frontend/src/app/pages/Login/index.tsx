@@ -13,7 +13,7 @@ const Login = (props: ILoginProps) => {
         sessionStorage.setItem("user", userData);
         navigate("/home");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {});
   };
   return (
     <LoginContainerDiv>

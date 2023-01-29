@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Welcome from "./app/pages/Welcome";
 import Signup from "./app/pages/Signup";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ProtectedRoute from "./app/authentication/ProtectedRoute";
 
 const queryClient = new QueryClient();
 const App = () => {
@@ -17,8 +18,10 @@ const App = () => {
             <Route path="/" element={<Welcome />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/review" element={<Review />} />
+            <Route path="/" element={<ProtectedRoute />}>
+              <Route path="/home" element={<Home />} />
+              <Route path="/review" element={<Review />} />
+            </Route>
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>

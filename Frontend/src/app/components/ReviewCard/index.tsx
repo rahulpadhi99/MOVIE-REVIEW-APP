@@ -11,13 +11,13 @@ import {
   ReviewRatingDiv,
   ReviewDescriptionDiv,
 } from "./styles";
-
+//36px
 const ReviewCard = (props: IReviewCardProps) => {
   const { user, description, ratings } = props;
   return (
     <ReviewCardDiv>
       <UserContainerDiv>
-        <Avatar size="36px" background="orange">
+        <Avatar name="review" background="orange">
           {user.name[0]}
         </Avatar>
         <UserDetailDiv>

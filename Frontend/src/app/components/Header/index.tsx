@@ -4,20 +4,21 @@ import {
   HeaderContainerDiv,
   AvatarContainer,
   AppNameDiv,
-  UserDiv,
+  UserNameDiv,
 } from "./styles";
 
 const Header = (props: IHeaderProps) => {
   const userName = sessionStorage.getItem("user");
   const userDetail = userName && JSON.parse(userName);
+
   return (
     <>
       <HeaderContainerDiv>
         <AppNameDiv>The Movie Review App</AppNameDiv>
         <AvatarContainer>
-          {userDetail?.name}
-          <Avatar size="47px" background="grey">
-            {userDetail?.name[0]}
+          <UserNameDiv> {userDetail?.name}</UserNameDiv>
+          <Avatar name="user" background="grey">
+            <UserNameDiv>{userDetail?.name[0]}</UserNameDiv>
           </Avatar>
         </AvatarContainer>
       </HeaderContainerDiv>

@@ -81,9 +81,7 @@ const Home = (props: IHomeProps) => {
       onSuccess: () => {
         retchMovies();
       },
-      onError: (error) => {
-        console.log(error);
-      },
+      onError: (error) => {},
     });
     setOpen(false);
   };

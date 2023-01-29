@@ -20,7 +20,7 @@ exports.postReviews = (req, res, next) => {
   const review = new Review({
     description: reviewDescription,
     ratings: reviewRatings,
-    user: mongoose.Types.ObjectId("63c989bd2cb03403b4441e88"),
+    user: mongoose.Types.ObjectId(req.userId),
     movie: mongoose.Types.ObjectId(movieId),
   });
   review
