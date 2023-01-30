@@ -4,7 +4,7 @@ import Layout from "../../components/Layout";
 import { useLocation } from "react-router-dom";
 import TextArea from "../../components/TextArea";
 import React, { useEffect, useState } from "react";
-import { addReview, getReviews } from "./Services";
+import { addReview, deleteReview, getReviews, updateReview } from "./Services";
 import useQueryHook from "../../hooks/useQueryHook";
 import ReviewCard from "../../components/ReviewCard";
 import useMutationHook from "../../hooks/useMutationHook";
@@ -41,7 +41,6 @@ const Review = (props: IReviewProps) => {
   const location = useLocation();
   const movieDetail = location?.state;
   const intialValue: IReviewFormData = {
-    movieId: "",
     ratings: null,
     description: "",
   };
@@ -49,6 +48,7 @@ const Review = (props: IReviewProps) => {
   const [reviewFormData, setReviewFormData] =
     useState<IReviewFormData>(intialValue);
   const [allReviewData, setAllReviewData] = useState<IReviewDataProps[]>();
+  const [isUpdating, setIsUpdating] = useState<boolean>(false);
 
   const { refetch: refetchAllReviews } = useQueryHook(
     ["getReviews"],
@@ -66,7 +66,15 @@ const Review = (props: IReviewProps) => {
     }
   );
 
-  const { mutate } = useMutationHook(["addReview"], addReview);
+  const { mutate: mutateAddReview } = useMutationHook(["addReview"], addReview);
+  const { mutate: mutateUpdateReview } = useMutationHook(
+    ["updateReview"],
+    updateReview
+  );
+  const { mutate: mutateDeleteReview } = useMutationHook(
+    ["updateReview"],
+    deleteReview
+  );
 
   const positiveReviews = allReviewData?.filter((e) => e.ratings > 3);
   const averageReviews = allReviewData?.filter((e) => e.ratings === 3);
@@ -79,19 +87,43 @@ const Review = (props: IReviewProps) => {
     setReviewFormData((prev) => ({ ...prev, ratings: value }));
   };
 
+  const textChangeHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setReviewFormData((prev) => ({ ...prev, description: event.target.value }));
+  };
+
   const submitReviewHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    mutate(reviewFormData, {
+    isUpdating
+      ? mutateUpdateReview(reviewFormData, {
+          onSuccess: () => {
+            refetchAllReviews();
+            setIsUpdating(false);
+            setReviewFormData(intialValue);
+          },
+          onError: (error) => {},
+        })
+      : mutateAddReview(reviewFormData, {
+          onSuccess: () => {
+            refetchAllReviews();
+            setReviewFormData(intialValue);
+          },
+          onError: (error) => {},
+        });
+  };
+
+  const updateReviewHandler = (review: IReviewDataProps) => {
+    const { _id, ratings, description } = review;
+    setIsUpdating(true);
+    setReviewFormData({ reviewId: _id, ratings, description });
+  };
+
+  const deleteReviewHandler = (id: string) => {
+    mutateDeleteReview(id, {
       onSuccess: () => {
         refetchAllReviews();
-        setReviewFormData(intialValue);
       },
       onError: (error) => {},
     });
-  };
-
-  const textChangeHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setReviewFormData((prev) => ({ ...prev, description: event.target.value }));
   };
 
   useEffect(() => {
@@ -152,8 +184,10 @@ const Review = (props: IReviewProps) => {
                 return (
                   <ReviewCard
                     user={review.user}
-                    description={review.description}
                     ratings={review.ratings}
+                    description={review.description}
+                    onUpdate={() => updateReviewHandler(review)}
+                    onDelete={() => deleteReviewHandler(review._id)}
                   />
                 );
               })}
@@ -181,7 +215,9 @@ const Review = (props: IReviewProps) => {
                   value={reviewFormData?.description}
                 />
               </ReviewTextFieldDiv>
-              <Button kind="secondary">Submit</Button>
+              <Button kind="secondary">
+                {isUpdating ? "Update" : "Submit"}
+              </Button>
             </ReviewForm>
           </ReviewDetailDiv>
         </ReviewContainerDiv>

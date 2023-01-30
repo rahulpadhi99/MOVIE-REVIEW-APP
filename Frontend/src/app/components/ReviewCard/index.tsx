@@ -1,4 +1,5 @@
 import Avatar from "../Avatar";
+import Button from "../Button";
 import Rating from "../Rating";
 import IReviewCardProps from "./ReviewCard";
 import {
@@ -9,11 +10,12 @@ import {
   UserEmailDiv,
   ReviewContainerDiv,
   ReviewRatingDiv,
+  ButtonContainer,
   ReviewDescriptionDiv,
 } from "./styles";
 //36px
 const ReviewCard = (props: IReviewCardProps) => {
-  const { user, description, ratings } = props;
+  const { user, description, ratings, onUpdate, onDelete } = props;
   return (
     <ReviewCardDiv>
       <UserContainerDiv>
@@ -31,6 +33,14 @@ const ReviewCard = (props: IReviewCardProps) => {
         </ReviewRatingDiv>
         <ReviewDescriptionDiv>{description}</ReviewDescriptionDiv>
       </ReviewContainerDiv>
+      <ButtonContainer>
+        <Button kind="primary" onClick={onUpdate}>
+          Update
+        </Button>
+        <Button kind="primary" onClick={onDelete}>
+          Delete
+        </Button>
+      </ButtonContainer>
     </ReviewCardDiv>
   );
 };

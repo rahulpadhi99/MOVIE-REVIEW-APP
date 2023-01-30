@@ -53,11 +53,11 @@ export const ReviewForm = styled.form`
   }
 `;
 export const ReviewTextFieldDiv = styled.div`
-  padding: 16px 16px 8px 16px;
+  padding: 8px 16px 8px 16px;
   text-align: left;
 `;
 export const ReviewRatingDiv = styled.div`
-  padding: 16px 16px 8px 16px;
+  padding: 16px 16px 4px 16px;
   border-top: 1px solid;
   display: flex;
   gap: 24px;
@@ -74,7 +74,7 @@ export const ReviewDetailDiv = styled.div`
 
 export const ReviewDataDiv = styled.div`
   overflow: auto;
-  height: 45vh;
+  height: 46.7vh;
   border-bottom: 1px solid;
 `;
 

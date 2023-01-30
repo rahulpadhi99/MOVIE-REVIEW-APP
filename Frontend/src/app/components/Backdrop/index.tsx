@@ -36,7 +36,6 @@ const BackdropComponent = (props: IBackDropProps) => {
   const changeHandler = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    console.log(event.target.name, event.target.value);
     setMovieData((prev) => ({
       ...prev,
       [event.target.name]: event.target.value,

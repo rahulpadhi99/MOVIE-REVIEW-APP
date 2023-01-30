@@ -12,7 +12,8 @@ export interface IReviewDataProps {
   updatedAt: string;
 }
 export interface IReviewFormData {
-  movieId: string;
-  ratings: number | null;
   description: string;
+  ratings: number | null;
+  movieId?: string;
+  reviewId?: string;
 }

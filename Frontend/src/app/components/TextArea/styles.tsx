@@ -8,7 +8,7 @@ export const StyledLabel = styled.label`
 export const StyledTextArea = styled.textarea<ITextAreaProps>`
   width: 95%;
   margin-top: 8px;
-  min-height: 100px;
+  min-height: 75px;
   display: flex;
   border: 1px solid orange;
   padding: 8px;

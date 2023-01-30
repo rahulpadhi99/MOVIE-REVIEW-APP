@@ -6,7 +6,9 @@ export interface IUser {
 }
 
 export default interface IReviewCardProps {
-  description: string;
   user: IUser;
   ratings: number;
+  description: string;
+  onUpdate: () => void;
+  onDelete: () => void;
 }
