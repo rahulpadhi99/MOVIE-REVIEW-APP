@@ -28,7 +28,7 @@ export const StyledConstOption = styled(StyledOption)`
   text-align: center;
 `;
 
-export const StyledSelect = styled.select<ISelectProps>`
+export const StyledSelect = styled.select`
   @media ${device.mobile1} {
     font-size: 10px;
     width: 48px;

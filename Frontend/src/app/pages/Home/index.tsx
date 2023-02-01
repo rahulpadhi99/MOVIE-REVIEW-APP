@@ -1,11 +1,18 @@
-import React, { useEffect, useState } from "react";
-import IHomeProps, { IAllMoviesData } from "./Home";
-import Layout from "../../components/Layout";
-import Select from "../../components/Select";
 import Input from "../../components/Input";
+import Error from "../../components/Error";
+import Select from "../../components/Select";
 import Button from "../../components/Button";
-import MovieCard from "../../components/MovieCard";
+import Layout from "../../components/Layout";
+import Success from "../../components/Success";
+import Loading from "../../components/Loading";
 import { useNavigate } from "react-router-dom";
+import Backdrop from "../../components/Backdrop";
+import React, { useEffect, useState } from "react";
+import MovieCard from "../../components/MovieCard";
+import IHomeProps, { IMoviesData, ISearchData } from "./Home";
+import useQueryHook from "../../hooks/useQueryHook";
+import useMutationHook from "../../hooks/useMutationHook";
+import { addMovie, getMovies, IQueryData } from "./Services";
 import {
   SearchContainerDiv,
   SearchMovieDiv,
@@ -14,20 +21,18 @@ import {
   MovieContainerDiv,
   MovieCardContainerDiv,
 } from "./styles";
-import { addMovie, getMovies, IQueryData } from "./Services";
-import useQueryHook from "../../hooks/useQueryHook";
-import Success from "../../components/Success";
-import Error from "../../components/Error";
-import Loading from "../../components/Loading";
-import Backdrop from "../../components/Backdrop";
-import useMutationHook from "../../hooks/useMutationHook";
+
+const intialQueryData = {
+  title: "",
+  year: "",
+};
 
 const Home = (props: IHomeProps) => {
   const navigate = useNavigate();
-  const [queryData, setQueryData] = useState<IQueryData>({
-    title: "",
-    year: "",
-  });
+  const [open, setOpen] = useState(false);
+  const [canGetAllMovies, setCanGetAllMovies] = useState<boolean>(false);
+  const [allMovieData, setAllMovieData] = useState<IMoviesData[]>([]);
+  const [queryData, setQueryData] = useState<IQueryData>(intialQueryData);
 
   const getAllYears = () => {
     let years = [];
@@ -38,20 +43,23 @@ const Home = (props: IHomeProps) => {
     return years;
   };
 
-  const [canGetAllMovies, setCanGetAllMovies] = useState<boolean>(false);
-  const [open, setOpen] = useState(false);
-  const {
-    status,
-    data: allMovieData,
-    refetch: retchMovies,
-    error,
-  } = useQueryHook(["getMovies"], getMovies, queryData, {
-    enabled: canGetAllMovies,
-  });
+  const { status, refetch: retchMovies } = useQueryHook(
+    ["getMovies"],
+    getMovies,
+    queryData,
+    {
+      enabled: canGetAllMovies,
+      onSuccess: (data: any) => {
+        setAllMovieData(data);
+        setCanGetAllMovies(false);
+      },
+      onError: (error) => {},
+    }
+  );
 
   const { mutate } = useMutationHook(["addMovie"], addMovie);
 
-  const selectMovieHandler = (movie: IAllMoviesData) => {
+  const selectMovieHandler = (movie: IMoviesData) => {
     navigate("/review", { state: movie });
   };
 
@@ -76,7 +84,7 @@ const Home = (props: IHomeProps) => {
     }));
   };
 
-  const addMovieDataHandler = (movieData: IQueryData) => {
+  const addMovieDataHandler = (movieData: ISearchData) => {
     mutate(movieData, {
       onSuccess: () => {
         retchMovies();
@@ -131,7 +139,7 @@ const Home = (props: IHomeProps) => {
         {status === "success" && (
           <Success>
             <MovieContainerDiv>
-              {allMovieData?.map((movie: IAllMoviesData) => {
+              {allMovieData?.map((movie: IMoviesData) => {
                 return (
                   <div>
                     <MovieCardContainerDiv>

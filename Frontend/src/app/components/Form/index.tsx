@@ -3,51 +3,51 @@ import Input from "../Input";
 import Button from "../Button";
 import IFormProps, { IUser } from "./Form";
 import { StyledForm, ButtonContainerDiv } from "./styles";
+import { FormProvider, useForm } from "react-hook-form";
+import { schema } from "../../validation";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const Form = (props: IFormProps) => {
-  const initialValue = {
-    name: "",
-    email: "",
-    password: "",
-  };
-  const [user, setUser] = useState<IUser>(initialValue);
+  const methods = useForm<IUser>({
+    resolver: yupResolver(schema),
+  });
 
-  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUser((prev) => ({ ...prev, [event.target.name]: event.target.value }));
-  };
-
-  const submitFormHandler = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    props.submitHandler(user);
+  const submitFormHandler = (data: IUser) => {
+    props.onSubmit(data);
   };
   return (
     <>
-      <StyledForm onSubmit={submitFormHandler}>
-        <Input
-          type="text"
-          name="name"
-          label="Name"
-          value={user.name}
-          onChange={changeHandler}
-        ></Input>
-        <Input
-          type="text"
-          name="email"
-          label="Email"
-          value={user.email}
-          onChange={changeHandler}
-        ></Input>
-        <Input
-          type="password"
-          name="password"
-          label="Passowrd"
-          value={user.password}
-          onChange={changeHandler}
-        ></Input>
-        <ButtonContainerDiv>
-          <Button kind="secondary">{props.type}</Button>
-        </ButtonContainerDiv>
-      </StyledForm>
+      <FormProvider {...methods}>
+        <StyledForm onSubmit={methods.handleSubmit(submitFormHandler)}>
+          <Input
+            type="text"
+            name="name"
+            label="Name"
+            isValidated
+            register={methods.register}
+            error={methods.formState.errors.name?.message}
+          ></Input>
+          <Input
+            type="email"
+            name="email"
+            label="Email"
+            isValidated
+            register={methods.register}
+            error={methods.formState.errors.email?.message}
+          ></Input>
+          <Input
+            type="password"
+            name="password"
+            label="Password"
+            isValidated
+            register={methods.register}
+            error={methods.formState.errors.password?.message}
+          ></Input>
+          <ButtonContainerDiv>
+            <Button kind="secondary">{props.type}</Button>
+          </ButtonContainerDiv>
+        </StyledForm>
+      </FormProvider>
     </>
   );
 };

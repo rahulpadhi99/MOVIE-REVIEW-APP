@@ -2,8 +2,11 @@ import React from "react";
 
 export default interface ISelectCProps {
   name: string;
-  value: string;
-  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  label: string;
+  value?: string;
   options?: number[];
-  label?: string;
+  isValidated?: boolean;
+  register?: any;
+  error?: string;
+  onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }

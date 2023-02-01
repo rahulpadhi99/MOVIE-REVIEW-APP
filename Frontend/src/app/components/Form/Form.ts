@@ -1,6 +1,6 @@
 export default interface IFormProps {
   type: string;
-  submitHandler: (user: IUser) => void;
+  onSubmit: (data: IUser) => void;
 }
 
 export interface IUser {

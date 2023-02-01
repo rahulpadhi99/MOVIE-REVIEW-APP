@@ -1,7 +1,10 @@
 export default interface InputProps {
   type: string;
   name: string;
-  value: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  label?: string;
+  label: string;
+  error?: string;
+  value?: string;
+  register?: any;
+  isValidated?: boolean;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }

@@ -1,9 +1,13 @@
 export default interface ITextAreaProps {
-  name: string;
   row: string;
-  value: string | undefined;
+  name: string;
   column: string;
   placeholder: string;
-  onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  error?: string;
   label?: string;
+  register?: any;
+  isValidated?: boolean;
+  value?: string | undefined;
+  defaultValue?: string | undefined;
+  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }

@@ -1,6 +1,6 @@
 export default interface IHomeProps {}
 
-export interface IAllMoviesData {
+export interface IMoviesData {
   _id: string;
   title: string;
   released: string;
@@ -15,4 +15,9 @@ export interface IAllMoviesData {
   boxOffice: string;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface ISearchData {
+  title: string;
+  year: string;
 }

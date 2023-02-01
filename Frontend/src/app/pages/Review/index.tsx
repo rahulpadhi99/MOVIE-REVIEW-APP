@@ -36,12 +36,16 @@ import {
   ReviewSpanDiv,
 } from "./styles";
 import Avatar from "../../components/Avatar";
+import { FormProvider, useForm } from "react-hook-form";
+import { AddReviewSchema, SearchSchema } from "../../validation";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { ISearchData } from "../Home/Home";
 
 const Review = (props: IReviewProps) => {
   const location = useLocation();
   const movieDetail = location?.state;
   const intialValue: IReviewFormData = {
-    ratings: null,
+    ratings: 0.5,
     description: "",
   };
   const [canGetAllReviews, setCanGetAllReviews] = useState(false);
@@ -87,27 +91,32 @@ const Review = (props: IReviewProps) => {
     setReviewFormData((prev) => ({ ...prev, ratings: value }));
   };
 
-  const textChangeHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setReviewFormData((prev) => ({ ...prev, description: event.target.value }));
-  };
-
-  const submitReviewHandler = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const submitReviewHandler = (data: IReviewFormData) => {
+    const formData = { ...reviewFormData, ...data };
     isUpdating
-      ? mutateUpdateReview(reviewFormData, {
+      ? mutateUpdateReview(formData, {
           onSuccess: () => {
             refetchAllReviews();
+          },
+          onError: (error) => {},
+          onSettled: () => {
             setIsUpdating(false);
             setReviewFormData(intialValue);
+            methods.reset();
           },
-          onError: (error) => {},
         })
-      : mutateAddReview(reviewFormData, {
+      : mutateAddReview(formData, {
           onSuccess: () => {
             refetchAllReviews();
-            setReviewFormData(intialValue);
           },
-          onError: (error) => {},
+          onError: (error) => {
+            console.log(error);
+          },
+          onSettled: () => {
+            setIsUpdating(false);
+            setReviewFormData(intialValue);
+            methods.reset();
+          },
         });
   };
 
@@ -130,7 +139,11 @@ const Review = (props: IReviewProps) => {
     setCanGetAllReviews(true);
     setReviewFormData((prev) => ({ ...prev, movieId: movieDetail?._id }));
   }, [movieDetail?._id]);
-  //150px
+
+  const methods = useForm<IReviewFormData>({
+    resolver: yupResolver(AddReviewSchema),
+  });
+
   return (
     <>
       <Layout>
@@ -192,33 +205,38 @@ const Review = (props: IReviewProps) => {
                 );
               })}
             </ReviewDataDiv>
-            <ReviewForm onSubmit={submitReviewHandler}>
-              <ReviewFormHeaderDiv>Submit a review</ReviewFormHeaderDiv>
-              <ReviewRatingDiv>
-                Submit Rating :
-                <ReviewSpanDiv>
-                  <Rating
-                    size="large"
-                    value={reviewFormData?.ratings}
-                    onChange={submitRatingHandler}
+            <FormProvider {...methods}>
+              <ReviewForm onSubmit={methods.handleSubmit(submitReviewHandler)}>
+                <ReviewFormHeaderDiv>Submit a review</ReviewFormHeaderDiv>
+                <ReviewRatingDiv>
+                  Submit Rating :
+                  <ReviewSpanDiv>
+                    <Rating
+                      size="large"
+                      name="ratings"
+                      value={reviewFormData?.ratings}
+                      onChange={submitRatingHandler}
+                    />
+                  </ReviewSpanDiv>
+                </ReviewRatingDiv>
+                <ReviewTextFieldDiv>
+                  <TextArea
+                    row="2"
+                    column="4"
+                    name="description"
+                    label="Comment : "
+                    placeholder="Write a review"
+                    defaultValue={reviewFormData?.description}
+                    isValidated
+                    register={methods.register}
+                    error={methods.formState.errors.description?.message}
                   />
-                </ReviewSpanDiv>
-              </ReviewRatingDiv>
-              <ReviewTextFieldDiv>
-                <TextArea
-                  row="2"
-                  column="4"
-                  name="review"
-                  label="Comment : "
-                  placeholder="Write a review"
-                  onChange={textChangeHandler}
-                  value={reviewFormData?.description}
-                />
-              </ReviewTextFieldDiv>
-              <Button kind="secondary">
-                {isUpdating ? "Update" : "Submit"}
-              </Button>
-            </ReviewForm>
+                </ReviewTextFieldDiv>
+                <Button kind="secondary">
+                  {isUpdating ? "Update" : "Submit"}
+                </Button>
+              </ReviewForm>
+            </FormProvider>
           </ReviewDetailDiv>
         </ReviewContainerDiv>
       </Layout>

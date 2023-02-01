@@ -1,9 +1,13 @@
-import Input from "../Input";
-import Button from "../Button";
-import Select from "../Select";
 import Icon from "../Icon";
+import Input from "../Input";
+import Select from "../Select";
+import Button from "../Button";
 import { Backdrop } from "@mui/material";
 import { IBackDropProps } from "./Backdrop";
+import { SearchSchema } from "../../validation";
+import { ISearchData } from "../../pages/Home/Home";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { FormProvider, useForm } from "react-hook-form";
 import {
   BackDropDiv,
   ButtonContainerDiv,
@@ -14,14 +18,12 @@ import {
   TitleDiv,
   CloseButtonDiv,
 } from "./styles";
-import { useState } from "react";
-import { IQueryData } from "../../pages/Home/Services";
 
 const BackdropComponent = (props: IBackDropProps) => {
   const { open, onClick } = props;
-  const [movieData, setMovieData] = useState<IQueryData>({
-    title: "",
-    year: "",
+
+  const methods = useForm<ISearchData>({
+    resolver: yupResolver(SearchSchema),
   });
 
   const getAllYears = () => {
@@ -33,19 +35,11 @@ const BackdropComponent = (props: IBackDropProps) => {
     return years;
   };
 
-  const changeHandler = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    setMovieData((prev) => ({
-      ...prev,
-      [event.target.name]: event.target.value,
-    }));
+  const submitMovieHandler = (data: ISearchData) => {
+    props.addMovieData(data);
+    methods.reset();
   };
 
-  const submitMovieHandler = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    props.addMovieData(movieData);
-  };
   return (
     <BackDropDiv>
       <Backdrop className="backdrop" open={open}>
@@ -56,29 +50,33 @@ const BackdropComponent = (props: IBackDropProps) => {
               <Icon name="clear" />
             </CloseButtonDiv>
           </TitleContainerDiv>
-          <form onSubmit={submitMovieHandler}>
-            <MovieNameInputDiv>
-              <Input
-                type="text"
-                name="title"
-                label="Movie Name : "
-                value={movieData?.title}
-                onChange={changeHandler}
-              />
-            </MovieNameInputDiv>
-            <MovieYearSelectDiv>
-              <Select
-                label="Release Year : "
-                name="year"
-                value={movieData?.year}
-                onChange={changeHandler}
-                options={getAllYears()}
-              />
-            </MovieYearSelectDiv>
-            <ButtonContainerDiv>
-              <Button kind="secondary">Add</Button>
-            </ButtonContainerDiv>
-          </form>
+          <FormProvider {...methods}>
+            <form onSubmit={methods.handleSubmit(submitMovieHandler)}>
+              <MovieNameInputDiv>
+                <Input
+                  type="text"
+                  name="title"
+                  label="Movie Name : "
+                  isValidated
+                  register={methods.register}
+                  error={methods.formState.errors.title?.message}
+                />
+              </MovieNameInputDiv>
+              <MovieYearSelectDiv>
+                <Select
+                  label="Release Year : "
+                  name="year"
+                  options={getAllYears()}
+                  isValidated
+                  register={methods.register}
+                  error={methods.formState.errors.year?.message}
+                />
+              </MovieYearSelectDiv>
+              <ButtonContainerDiv>
+                <Button kind="secondary">Add</Button>
+              </ButtonContainerDiv>
+            </form>
+          </FormProvider>
         </BackDropContentDiv>
       </Backdrop>
     </BackDropDiv>

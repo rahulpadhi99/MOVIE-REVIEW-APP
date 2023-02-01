@@ -3,19 +3,23 @@ import ISignpProps, { IUser } from "./Signup";
 import { SignupContainerDiv } from "./styles";
 import { signUpUser } from "./Services";
 import { useNavigate } from "react-router-dom";
+import useMutationHook from "../../hooks/useMutationHook";
 
 const Signup = (props: ISignpProps) => {
   const navigate = useNavigate();
-  const submitHandler = (user: IUser) => {
-    signUpUser(user)
-      .then((res) => {
+  const { mutate } = useMutationHook(["addMovie"], signUpUser);
+
+  const onSubmit = (user: IUser) => {
+    mutate(user, {
+      onSuccess: (res: any) => {
         navigate("/login");
-      })
-      .catch((err) => {});
+      },
+      onError: (error) => {},
+    });
   };
   return (
     <SignupContainerDiv>
-      <Form type="Sign Up" submitHandler={submitHandler}></Form>
+      <Form type="Sign Up" onSubmit={onSubmit}></Form>
     </SignupContainerDiv>
   );
 };

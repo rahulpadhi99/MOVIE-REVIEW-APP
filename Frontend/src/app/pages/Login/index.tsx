@@ -3,21 +3,28 @@ import Form from "../../components/Form";
 import { LoginContainerDiv } from "./styles";
 import ILoginProps, { IUser } from "./Login";
 import { useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import useMutationHook from "../../hooks/useMutationHook";
 
 const Login = (props: ILoginProps) => {
   const navigate = useNavigate();
-  const submitHandler = (user: IUser) => {
-    loginUser(user)
-      .then((res) => {
+
+  const { mutate } = useMutationHook(["addMovie"], loginUser);
+
+  const onSubmit = (user: IUser) => {
+    mutate(user, {
+      onSuccess: (res: any) => {
         const userData = JSON.stringify(res?.data?.userDetails);
         sessionStorage.setItem("user", userData);
         navigate("/home");
-      })
-      .catch((err) => {});
+      },
+      onError: (error) => {},
+    });
   };
+
   return (
     <LoginContainerDiv>
-      <Form type="Login" submitHandler={submitHandler} />
+      <Form type="Login" onSubmit={onSubmit} />
     </LoginContainerDiv>
   );
 };
