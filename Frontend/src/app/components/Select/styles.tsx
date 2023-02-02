@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { device } from "../../constants/constants";
-import ISelectProps from "./Select";
 
 export const StyledLabel = styled.label`
   @media ${device.mobile1} {
@@ -52,6 +51,6 @@ export const StyledSelect = styled.select`
   @media ${device.desktop} {
     font-size: 18px;
     width: 100px;
-    height: 40px;
+    height: 35px;
   }
 `;

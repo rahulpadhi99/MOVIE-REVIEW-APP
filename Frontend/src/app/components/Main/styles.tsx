@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import IMainProps from "./Main";
+import styled from "styled-components";
 import { device } from "../../constants/constants";
 
 export const StyledMain = styled.main<IMainProps>`

@@ -6,14 +6,13 @@ export const StyledSpan = styled.span`
 `;
 
 export const MovieCardDiv = styled.div`
-  cursor: pointer;
-  display: flex;
-  border: 1px solid;
-  padding: 8px;
   gap: 16px;
+  padding: 8px;
+  display: flex;
+  cursor: pointer;
+  border: 1px solid;
 `;
 
-export const ImagContainerDiv = styled.div``;
 export const DetailsContainerDiv = styled.div`
   line-height: 24px;
 
@@ -60,5 +59,8 @@ export const MovieNameDiv = styled.div`
 
 export const MovieTimeDiv = styled.div``;
 
+export const ImagContainerDiv = styled.div``;
+
 export const MovieGenreDiv = styled.div``;
+
 export const MovieReleaseDiv = styled.div``;

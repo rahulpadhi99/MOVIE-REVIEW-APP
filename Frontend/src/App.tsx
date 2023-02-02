@@ -1,12 +1,12 @@
 import "./App.css";
-import Login from "./app/pages/Login";
 import Home from "./app/pages/Home";
-import Review from "./app/pages/Review";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Welcome from "./app/pages/Welcome";
+import Login from "./app/pages/Login";
 import Signup from "./app/pages/Signup";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Review from "./app/pages/Review";
+import Welcome from "./app/pages/Welcome";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./app/authentication/ProtectedRoute";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
 const App = () => {

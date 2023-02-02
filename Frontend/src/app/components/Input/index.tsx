@@ -1,5 +1,5 @@
 import IInputProps from "./Input";
-import { StyledLabel, StyledInput } from "./styles";
+import { StyledLabel, StyledInput, ErrorDiv } from "./styles";
 
 const Input = (props: IInputProps) => {
   const { name, label, isValidated, register, error } = props;
@@ -12,7 +12,7 @@ const Input = (props: IInputProps) => {
       ) : (
         <StyledInput {...props}></StyledInput>
       )}
-      {error && <div>{error}</div>}
+      {error && <ErrorDiv>{error}</ErrorDiv>}
     </>
   );
 };

@@ -1,7 +1,7 @@
 import {
   QueryKey,
-  UseQueryOptions,
   UseQueryResult,
+  UseQueryOptions,
 } from "@tanstack/react-query";
 import { AxiosResponse } from "axios";
 

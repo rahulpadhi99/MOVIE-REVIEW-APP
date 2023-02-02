@@ -1,6 +1,6 @@
+import IImageProps from "./Image";
 import styled from "styled-components";
 import { device } from "../../constants/constants";
-import IImageProps from "./Image";
 
 export const StyledImage = styled.img<IImageProps>`
   @media ${device.mobile1} {

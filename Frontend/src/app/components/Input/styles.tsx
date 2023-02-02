@@ -1,6 +1,6 @@
+import IInputProps from "./Input";
 import styled from "styled-components";
 import { device } from "../../constants/constants";
-import IInputProps from "./Input";
 
 export const StyledLabel = styled.label`
   @media ${device.mobile1} {
@@ -44,6 +44,27 @@ export const StyledInput = styled.input<IInputProps>`
   @media ${device.desktop} {
     font-size: 18px;
     width: 400px;
-    height: 40px;
+    height: 35px;
+  }
+`;
+
+export const ErrorDiv = styled.div`
+  width: 80%;
+  color: red;
+
+  @media ${device.mobile1} {
+    font-size: 10px;
+  }
+  @media ${device.mobile2} {
+    font-size: 12px;
+  }
+  @media ${device.tablet} {
+    font-size: 14px;
+  }
+  @media ${device.laptop} {
+    font-size: 16px;
+  }
+  @media ${device.desktop} {
+    font-size: 18px;
   }
 `;

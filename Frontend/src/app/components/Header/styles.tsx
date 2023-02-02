@@ -1,6 +1,6 @@
 import IHeaderProps from "./Header";
-import { device } from "../../constants/constants";
 import styled from "styled-components";
+import { device } from "../../constants/constants";
 
 export const HeaderContainerDiv = styled.div<IHeaderProps>`
   background-color: orange;
@@ -29,8 +29,6 @@ export const HeaderContainerDiv = styled.div<IHeaderProps>`
     font-size: 35px;
   }
 `;
-
-export const AppNameDiv = styled.div``;
 
 export const AvatarContainer = styled.div`
   display: flex;
@@ -70,3 +68,5 @@ export const UserNameDiv = styled.div`
     font-size: 35px;
   }
 `;
+
+export const AppNameDiv = styled.div``;

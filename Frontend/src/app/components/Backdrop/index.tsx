@@ -9,14 +9,13 @@ import { ISearchData } from "../../pages/Home/Home";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider, useForm } from "react-hook-form";
 import {
+  TitleDiv,
+  StyledForm,
   BackDropDiv,
+  CloseButtonDiv,
+  TitleContainerDiv,
   ButtonContainerDiv,
   BackDropContentDiv,
-  TitleContainerDiv,
-  MovieNameInputDiv,
-  MovieYearSelectDiv,
-  TitleDiv,
-  CloseButtonDiv,
 } from "./styles";
 
 const BackdropComponent = (props: IBackDropProps) => {
@@ -51,31 +50,27 @@ const BackdropComponent = (props: IBackDropProps) => {
             </CloseButtonDiv>
           </TitleContainerDiv>
           <FormProvider {...methods}>
-            <form onSubmit={methods.handleSubmit(submitMovieHandler)}>
-              <MovieNameInputDiv>
-                <Input
-                  type="text"
-                  name="title"
-                  label="Movie Name : "
-                  isValidated
-                  register={methods.register}
-                  error={methods.formState.errors.title?.message}
-                />
-              </MovieNameInputDiv>
-              <MovieYearSelectDiv>
-                <Select
-                  label="Release Year : "
-                  name="year"
-                  options={getAllYears()}
-                  isValidated
-                  register={methods.register}
-                  error={methods.formState.errors.year?.message}
-                />
-              </MovieYearSelectDiv>
+            <StyledForm onSubmit={methods.handleSubmit(submitMovieHandler)}>
+              <Input
+                type="text"
+                name="title"
+                label="Movie Name"
+                isValidated
+                register={methods.register}
+                error={methods.formState.errors.title?.message}
+              />
+              <Select
+                label="Release Year"
+                name="year"
+                options={getAllYears()}
+                isValidated
+                register={methods.register}
+                error={methods.formState.errors.year?.message}
+              />
               <ButtonContainerDiv>
                 <Button kind="secondary">Add</Button>
               </ButtonContainerDiv>
-            </form>
+            </StyledForm>
           </FormProvider>
         </BackDropContentDiv>
       </Backdrop>

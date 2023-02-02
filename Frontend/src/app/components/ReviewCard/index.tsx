@@ -3,17 +3,17 @@ import Button from "../Button";
 import Rating from "../Rating";
 import IReviewCardProps from "./ReviewCard";
 import {
-  ReviewCardDiv,
-  UserContainerDiv,
-  UserDetailDiv,
   UserNameDiv,
   UserEmailDiv,
-  ReviewContainerDiv,
+  UserDetailDiv,
+  ReviewCardDiv,
   ReviewRatingDiv,
   ButtonContainer,
+  UserContainerDiv,
+  ReviewContainerDiv,
   ReviewDescriptionDiv,
 } from "./styles";
-//36px
+
 const ReviewCard = (props: IReviewCardProps) => {
   const { user, description, ratings, onUpdate, onDelete } = props;
   return (

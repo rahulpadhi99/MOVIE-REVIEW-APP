@@ -3,10 +3,10 @@ import {
   UserCardDiv,
   UserNameDiv,
   UserEmailDiv,
-  UserReviewDetailDiv,
   TotalReviewDiv,
   LastWeekReviewDiv,
   LastMonthReviewDiv,
+  UserReviewDetailDiv,
 } from "./styles";
 
 const UserCard = (props: IUserCardProps) => {

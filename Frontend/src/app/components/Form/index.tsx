@@ -1,20 +1,20 @@
-import React, { useState } from "react";
 import Input from "../Input";
 import Button from "../Button";
+import { AuthSchema } from "../../validation";
 import IFormProps, { IUser } from "./Form";
-import { StyledForm, ButtonContainerDiv } from "./styles";
-import { FormProvider, useForm } from "react-hook-form";
-import { schema } from "../../validation";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { FormProvider, useForm } from "react-hook-form";
+import { StyledForm, ButtonContainerDiv } from "./styles";
 
 const Form = (props: IFormProps) => {
   const methods = useForm<IUser>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(AuthSchema),
   });
 
   const submitFormHandler = (data: IUser) => {
     props.onSubmit(data);
   };
+
   return (
     <>
       <FormProvider {...methods}>

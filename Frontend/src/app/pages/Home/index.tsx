@@ -9,10 +9,10 @@ import { useNavigate } from "react-router-dom";
 import Backdrop from "../../components/Backdrop";
 import React, { useEffect, useState } from "react";
 import MovieCard from "../../components/MovieCard";
-import IHomeProps, { IMoviesData, ISearchData } from "./Home";
 import useQueryHook from "../../hooks/useQueryHook";
 import useMutationHook from "../../hooks/useMutationHook";
 import { addMovie, getMovies, IQueryData } from "./Services";
+import IHomeProps, { IMoviesData, ISearchData } from "./Home";
 import {
   SearchContainerDiv,
   SearchMovieDiv,
@@ -22,16 +22,17 @@ import {
   MovieCardContainerDiv,
 } from "./styles";
 
-const intialQueryData = {
+const intialQueryData: IQueryData = {
   title: "",
   year: "",
 };
 
 const Home = (props: IHomeProps) => {
   const navigate = useNavigate();
+
   const [open, setOpen] = useState(false);
-  const [canGetAllMovies, setCanGetAllMovies] = useState<boolean>(false);
   const [allMovieData, setAllMovieData] = useState<IMoviesData[]>([]);
+  const [canGetAllMovies, setCanGetAllMovies] = useState<boolean>(false);
   const [queryData, setQueryData] = useState<IQueryData>(intialQueryData);
 
   const getAllYears = () => {

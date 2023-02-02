@@ -25,8 +25,6 @@ export const MovieDetailContainerDiv = styled.div`
   }
 `;
 
-export const ImageContainerDiv = styled.div``;
-
 export const DetailsContainerDiv = styled.div`
   text-align: left;
   @media ${device.mobile1} {
@@ -69,14 +67,23 @@ export const MovieNameDiv = styled.div`
     font-size: 40px;
   }
 `;
-export const MovieActorsDiv = styled.div``;
-export const MovieDirectorDiv = styled.div``;
-export const MoviePlotDiv = styled.div``;
-export const MovieIMDBRatingDiv = styled.div``;
-export const MovieBoxOfficeDiv = styled.div``;
+
 export const MovieReleaseDiv = styled.div`
   padding-top: 8px;
 `;
 
 export const MovieRunDiv = styled.div``;
+
+export const MoviePlotDiv = styled.div``;
+
 export const MovieGenreDiv = styled.div``;
+
+export const MovieActorsDiv = styled.div``;
+
+export const MovieDirectorDiv = styled.div``;
+
+export const MovieBoxOfficeDiv = styled.div``;
+
+export const ImageContainerDiv = styled.div``;
+
+export const MovieIMDBRatingDiv = styled.div``;

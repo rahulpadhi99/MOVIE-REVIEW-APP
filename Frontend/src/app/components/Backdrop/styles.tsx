@@ -7,6 +7,13 @@ export const BackDropDiv = styled.div`
   }
 `;
 
+export const StyledForm = styled.form`
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+  place-content: center;
+`;
+
 export const BackDropContentDiv = styled.div`
   background-color: orange;
   border: 1px solid;
@@ -23,7 +30,6 @@ export const TitleDiv = styled.div`
   margin-bottom: 16px;
 `;
 
-export const CloseButtonDiv = styled.div``;
 export const MovieNameInputDiv = styled.div`
   padding: 16px 0px;
 `;
@@ -48,3 +54,5 @@ export const ButtonContainerDiv = styled.div`
     padding-top: 16px;
   }
 `;
+
+export const CloseButtonDiv = styled.div``;

@@ -1,8 +1,4 @@
-import {
-  MutationKey,
-  UseMutationOptions,
-  UseMutationResult,
-} from "@tanstack/react-query";
+import { MutationKey, UseMutationOptions } from "@tanstack/react-query";
 import { AxiosResponse } from "axios";
 
 export type TData = unknown;

@@ -28,7 +28,7 @@ export const StyledButton = styled.button<IButtonProps>`
   }
   @media ${device.desktop} {
     font-size: 18px;
-    padding: 9px 12px;
-    height: 40px;
+    padding: 7px 12px;
+    height: 35px;
   }
 `;

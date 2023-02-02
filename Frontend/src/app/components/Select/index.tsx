@@ -1,8 +1,8 @@
 import ISelectProps from "./Select";
 import {
-  StyledSelect,
   StyledLabel,
   StyledOption,
+  StyledSelect,
   StyledConstOption,
 } from "./styles";
 

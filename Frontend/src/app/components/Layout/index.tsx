@@ -1,5 +1,5 @@
-import ILayoutProps from "./Layout";
 import Main from "../Main";
+import ILayoutProps from "./Layout";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 

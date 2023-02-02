@@ -1,11 +1,11 @@
-import { useLocation } from "react-router-dom";
 import Avatar from "../Avatar";
 import IHeaderProps from "./Header";
+import { useLocation } from "react-router-dom";
 import {
-  HeaderContainerDiv,
-  AvatarContainer,
   AppNameDiv,
   UserNameDiv,
+  AvatarContainer,
+  HeaderContainerDiv,
 } from "./styles";
 
 const Header = (props: IHeaderProps) => {

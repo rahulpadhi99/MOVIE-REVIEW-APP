@@ -1,15 +1,15 @@
+import Image from "../Image";
 import IMovieCardProps from "./MovieCard";
 import {
   StyledSpan,
+  MovieNameDiv,
   MovieCardDiv,
-  ImagContainerDiv,
   MovieTimeDiv,
   MovieGenreDiv,
   MovieReleaseDiv,
-  MovieNameDiv,
+  ImagContainerDiv,
   DetailsContainerDiv,
 } from "./styles";
-import Image from "../Image";
 
 const MovieCard = (props: IMovieCardProps) => {
   const {

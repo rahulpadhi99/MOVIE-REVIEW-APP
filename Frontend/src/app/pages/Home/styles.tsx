@@ -5,45 +5,43 @@ export const SearchContainerDiv = styled.div`
   display: flex;
   place-content: center;
   background-color: aqua;
+
   @media ${device.mobile1} {
-    padding: 8px 12px;
-    font-size: 15px;
     gap: 4px;
+    font-size: 15px;
+    padding: 8px 12px;
   }
   @media ${device.mobile2} {
-    padding: 8px 12px;
-    font-size: 20px;
     gap: 16px;
+    font-size: 20px;
+    padding: 8px 12px;
   }
   @media ${device.tablet} {
-    padding: 12px 18px;
-    font-size: 25px;
     gap: 24px;
+    font-size: 25px;
+    padding: 12px 18px;
   }
   @media ${device.laptop} {
-    padding: 16px 24px;
-    font-size: 30px;
     gap: 30px;
+    font-size: 30px;
+    padding: 16px 24px;
   }
   @media ${device.desktop} {
-    padding: 20px 30px;
-    font-size: 35px;
     gap: 36px;
+    font-size: 35px;
+    padding: 20px 30px;
   }
 `;
-export const SearchMovieDiv = styled.div``;
-
-export const SearchYearDiv = styled.div``;
 
 export const SearchAndAddButtonDiv = styled.div`
   @media ${device.mobile1} {
-    display: flex;
     gap: 10px;
+    display: flex;
     align-items: end;
   }
   @media ${device.mobile2} {
-    display: flex;
     gap: 12px;
+    display: flex;
     align-items: end;
   }
   @media ${device.tablet} {
@@ -58,8 +56,8 @@ export const SearchAndAddButtonDiv = styled.div`
 `;
 
 export const MovieContainerDiv = styled.div`
-  display: grid;
   gap: 16px;
+  display: grid;
 
   @media ${device.mobile1} {
     padding: 4px 6px;
@@ -82,5 +80,9 @@ export const MovieContainerDiv = styled.div`
     grid-template-columns: auto auto auto;
   }
 `;
+
+export const SearchMovieDiv = styled.div``;
+
+export const SearchYearDiv = styled.div``;
 
 export const MovieCardContainerDiv = styled.div``;

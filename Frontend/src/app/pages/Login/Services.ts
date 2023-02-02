@@ -1,8 +1,8 @@
 import axios from "../../authentication/interceptor";
 
 interface IUserDetails {
-  email: string;
   name: string;
+  email: string;
   password: string;
 }
 export const loginUser = (userDetails: IUserDetails) => {

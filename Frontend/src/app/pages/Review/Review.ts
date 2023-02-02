@@ -4,12 +4,12 @@ export default interface IReviewProps {}
 
 export interface IReviewDataProps {
   _id: string;
-  description: string;
-  ratings: number;
   user: IUser;
   movie: string;
+  ratings: number;
   createdAt: string;
   updatedAt: string;
+  description: string;
 }
 export interface IReviewFormData {
   description: string;

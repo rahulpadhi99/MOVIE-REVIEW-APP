@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const LoginContainerDiv = styled.div`
-  min-height: 100vh;
-  background-color: orange;
   display: flex;
+  min-height: 100vh;
   place-content: center;
+  background-color: orange;
 `;

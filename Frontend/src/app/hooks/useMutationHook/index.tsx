@@ -17,12 +17,6 @@ const useMutationHook = (
   const result: UseMutationResult<TData, TError, TVariables, TContext> =
     useMutation(mutationKey, queryFunction, {
       ...options,
-      onSuccess: (data) => {
-        return data; //This is the response you get back
-      },
-      onError: (error) => {
-        return error;
-      },
     });
   return result;
 };

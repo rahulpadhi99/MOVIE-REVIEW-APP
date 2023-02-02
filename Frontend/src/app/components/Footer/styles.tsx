@@ -3,10 +3,10 @@ import { device } from "../../constants/constants";
 import styled from "styled-components";
 
 export const FooterContainerDiv = styled.div<IFooterProps>`
-  background-color: orange;
   display: grid;
   text-align: center;
   place-content: center;
+  background-color: orange;
 
   @media ${device.mobile1} {
     padding: 4px 6px;

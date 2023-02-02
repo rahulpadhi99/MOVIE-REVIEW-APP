@@ -2,11 +2,12 @@ import styled from "styled-components";
 import { device } from "../../constants/constants";
 
 export const WelcomeContainerDiv = styled.div`
-  text-align: center;
   display: flex;
+  text-align: center;
   min-height: inherit;
-  flex-direction: column;
   place-content: center;
+  flex-direction: column;
+
   @media ${device.mobile1} {
     font-size: 20px;
   }
@@ -23,11 +24,10 @@ export const WelcomeContainerDiv = styled.div`
     font-size: 40px;
   }
 `;
+
 export const AppNameDiv = styled.div`
   color: orange;
 `;
-
-export const WelcomeMessageDiv = styled.div``;
 
 export const SignupMessageDiv = styled.div`
   .signup-link,
@@ -69,3 +69,5 @@ export const LoginMessageDiv = styled.div`
     font-size: 24px;
   }
 `;
+
+export const WelcomeMessageDiv = styled.div``;

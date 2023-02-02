@@ -1,15 +1,19 @@
 import Rating from "../../components/Rating";
 import Button from "../../components/Button";
 import Layout from "../../components/Layout";
+import Avatar from "../../components/Avatar";
 import { useLocation } from "react-router-dom";
 import TextArea from "../../components/TextArea";
+import { AddReviewSchema } from "../../validation";
 import React, { useEffect, useState } from "react";
-import { addReview, deleteReview, getReviews, updateReview } from "./Services";
 import useQueryHook from "../../hooks/useQueryHook";
 import ReviewCard from "../../components/ReviewCard";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { FormProvider, useForm } from "react-hook-form";
 import useMutationHook from "../../hooks/useMutationHook";
-import IReviewProps, { IReviewDataProps, IReviewFormData } from "./Review";
 import MovieDetailCard from "../../components/MovieDetailCard";
+import IReviewProps, { IReviewDataProps, IReviewFormData } from "./Review";
+import { addReview, deleteReview, getReviews, updateReview } from "./Services";
 import {
   ReviewTextFieldDiv,
   ReviewContainerDiv,
@@ -35,24 +39,25 @@ import {
   ReviewDetailHeaderDiv,
   ReviewSpanDiv,
 } from "./styles";
-import Avatar from "../../components/Avatar";
-import { FormProvider, useForm } from "react-hook-form";
-import { AddReviewSchema, SearchSchema } from "../../validation";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { ISearchData } from "../Home/Home";
+
+const intialValue: IReviewFormData = {
+  ratings: 0.5,
+  description: "",
+};
 
 const Review = (props: IReviewProps) => {
   const location = useLocation();
   const movieDetail = location?.state;
-  const intialValue: IReviewFormData = {
-    ratings: 0.5,
-    description: "",
-  };
+
+  const [isUpdating, setIsUpdating] = useState<boolean>(false);
   const [canGetAllReviews, setCanGetAllReviews] = useState(false);
+  const [allReviewData, setAllReviewData] = useState<IReviewDataProps[]>();
   const [reviewFormData, setReviewFormData] =
     useState<IReviewFormData>(intialValue);
-  const [allReviewData, setAllReviewData] = useState<IReviewDataProps[]>();
-  const [isUpdating, setIsUpdating] = useState<boolean>(false);
+
+  const positiveReviews = allReviewData?.filter((e) => e.ratings > 3);
+  const averageReviews = allReviewData?.filter((e) => e.ratings === 3);
+  const negativeReviews = allReviewData?.filter((e) => e.ratings < 3);
 
   const { refetch: refetchAllReviews } = useQueryHook(
     ["getReviews"],
@@ -71,18 +76,16 @@ const Review = (props: IReviewProps) => {
   );
 
   const { mutate: mutateAddReview } = useMutationHook(["addReview"], addReview);
+
   const { mutate: mutateUpdateReview } = useMutationHook(
     ["updateReview"],
     updateReview
   );
+
   const { mutate: mutateDeleteReview } = useMutationHook(
     ["updateReview"],
     deleteReview
   );
-
-  const positiveReviews = allReviewData?.filter((e) => e.ratings > 3);
-  const averageReviews = allReviewData?.filter((e) => e.ratings === 3);
-  const negativeReviews = allReviewData?.filter((e) => e.ratings < 3);
 
   const submitRatingHandler = (
     event: React.SyntheticEvent<Element, Event>,
@@ -232,7 +235,7 @@ const Review = (props: IReviewProps) => {
                     error={methods.formState.errors.description?.message}
                   />
                 </ReviewTextFieldDiv>
-                <Button kind="secondary">
+                <Button kind="primary">
                   {isUpdating ? "Update" : "Submit"}
                 </Button>
               </ReviewForm>

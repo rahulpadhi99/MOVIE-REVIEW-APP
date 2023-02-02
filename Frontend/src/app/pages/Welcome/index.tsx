@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import Layout from "../../components/Layout";
 import {
-  WelcomeContainerDiv,
-  WelcomeMessageDiv,
-  SignupMessageDiv,
-  LoginMessageDiv,
   AppNameDiv,
+  LoginMessageDiv,
+  SignupMessageDiv,
+  WelcomeMessageDiv,
+  WelcomeContainerDiv,
 } from "./styles";
+
 const Welcome = () => {
   return (
     <Layout>

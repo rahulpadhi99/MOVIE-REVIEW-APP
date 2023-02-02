@@ -7,11 +7,13 @@ export const StyledSpan = styled.div`
     color: orange;
   }
 `;
+
 export const ReviewCardDiv = styled.div`
   padding: 0px 16px 8px;
   border-bottom: 1px solid;
   background-color: #e8e7e7;
 `;
+
 export const UserContainerDiv = styled.div`
   display: flex;
   justify-content: space-between;
@@ -36,6 +38,7 @@ export const UserNameDiv = styled.div`
     font-size: 20px;
   }
 `;
+
 export const UserEmailDiv = styled.div`
   @media ${device.mobile1} {
     font-size: 14px;
@@ -47,6 +50,7 @@ export const UserEmailDiv = styled.div`
     font-size: 16px;
   }
 `;
+
 export const ReviewContainerDiv = styled.div`
   text-align: left;
   padding: 4px 8px 8px 50px;
@@ -61,11 +65,12 @@ export const ReviewContainerDiv = styled.div`
   }
 `;
 
-export const ReviewRatingDiv = styled.div``;
-export const ReviewDescriptionDiv = styled.div``;
-
 export const ButtonContainer = styled.div`
   padding: 4px 8px 0px 50px;
   display: flex;
   gap: 16px;
 `;
+
+export const ReviewRatingDiv = styled.div``;
+
+export const ReviewDescriptionDiv = styled.div``;

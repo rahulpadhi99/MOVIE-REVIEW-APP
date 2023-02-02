@@ -2,10 +2,10 @@ import styled from "styled-components";
 import { device } from "../../constants/constants";
 
 export const StyledForm = styled.form`
-  display: flex;
   gap: 8px;
-  flex-direction: column;
+  display: flex;
   place-content: center;
+  flex-direction: column;
 `;
 
 export const ButtonContainerDiv = styled.div`

@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-export const UserCardDiv = styled.div``;
 export const UserNameDiv = styled.div`
   border-bottom: 1px solid;
 `;
@@ -25,3 +24,5 @@ export const TotalReviewDiv = styled(LastMonthReviewDiv)`
 `;
 
 export const LastWeekReviewDiv = styled(TotalReviewDiv)``;
+
+export const UserCardDiv = styled.div``;

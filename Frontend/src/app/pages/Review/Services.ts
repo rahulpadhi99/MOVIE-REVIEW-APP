@@ -7,10 +7,11 @@ export interface IAddQueryData {
 }
 
 export interface IUpdateQueryData {
-  reviewId: string;
   ratings: number;
+  reviewId: string;
   description: string;
 }
+
 export const getReviews = (movieId: string) => {
   let url = `http://localhost:8000/reviews?movieId=${movieId}`;
   return axios.get(url);

@@ -1,19 +1,19 @@
 import Image from "../Image";
 import IMovieDetailCardProps from "./MovieDetailCard";
 import {
-  MovieDetailContainerDiv,
-  ImageContainerDiv,
-  DetailsContainerDiv,
-  MovieNameDiv,
-  MovieReleaseDiv,
+  StyledSpan,
   MovieRunDiv,
+  MoviePlotDiv,
+  MovieNameDiv,
   MovieGenreDiv,
   MovieActorsDiv,
+  MovieReleaseDiv,
   MovieDirectorDiv,
-  MoviePlotDiv,
-  MovieIMDBRatingDiv,
+  ImageContainerDiv,
   MovieBoxOfficeDiv,
-  StyledSpan,
+  MovieIMDBRatingDiv,
+  DetailsContainerDiv,
+  MovieDetailContainerDiv,
 } from "./styles";
 
 const MovieDetailCard = (props: IMovieDetailCardProps) => {
