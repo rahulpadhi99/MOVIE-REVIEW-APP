@@ -4,8 +4,13 @@ const bodyParser = require("body-parser");
 const movieRoutes = require("./router/movies");
 const reviewRoutes = require("./router/reviews");
 const authRoutes = require("./router/auth");
+const dotenv = require("dotenv");
 
 const app = express();
+dotenv.config();
+
+const DATABASE_URL = process.env.MONGODB_CONNECT_URL;
+const PORT = process.env.PORT;
 
 app.use(bodyParser.json());
 
@@ -29,18 +34,9 @@ app.use((error, req, res, next) => {
 
   res.status(errorStatus).json({ message: errorMessage });
 });
-
 mongoose
-  .connect(
-    "mongodb+srv://rahulpadhi1999:tT7MmdH7BY4DH2Jh@moviereviewcluster.pmwgh1v.mongodb.net/reviewdata?retryWrites=true"
-  )
-  .then(() =>
-    app.listen(8000, () => {
-      console.log("port activated");
-    })
-  )
-  .catch(() => {
-    console.log("database error");
+  .connect(DATABASE_URL)
+  .then(() => app.listen(PORT))
+  .catch((err) => {
+    console.log("database error", err);
   });
-
-//tT7MmdH7BY4DH2Jh//
