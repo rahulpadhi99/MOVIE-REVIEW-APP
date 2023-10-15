@@ -18,14 +18,14 @@ const Header = (props: IHeaderProps) => {
     <>
       <HeaderContainerDiv>
         <AppNameDiv>The Movie Review App</AppNameDiv>
-        <AvatarContainer>
-          <UserNameDiv> {userDetail?.name}</UserNameDiv>
-          {pathName !== "/" && (
+        {pathName !== "/" && (
+          <AvatarContainer>
+            <UserNameDiv> {userDetail?.name}</UserNameDiv>
             <Avatar name="user" background="grey">
               <UserNameDiv>{userDetail?.name[0]}</UserNameDiv>
             </Avatar>
-          )}
-        </AvatarContainer>
+          </AvatarContainer>
+        )}
       </HeaderContainerDiv>
     </>
   );
