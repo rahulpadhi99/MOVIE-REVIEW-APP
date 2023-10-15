@@ -6,5 +6,5 @@ interface IUserDetails {
   password: string;
 }
 export const loginUser = (userDetails: IUserDetails) => {
-  return axios.post("http://localhost:8000/login", userDetails);
+  return axios.post(`${process.env.REACT_APP_BASE_URL}/login`, userDetails);
 };

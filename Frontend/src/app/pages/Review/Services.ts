@@ -13,22 +13,22 @@ export interface IUpdateQueryData {
 }
 
 export const getReviews = (movieId: string) => {
-  let url = `http://localhost:8000/reviews?movieId=${movieId}`;
+  let url = `${process.env.REACT_APP_BASE_URL}/reviews?movieId=${movieId}`;
   return axios.get(url);
 };
 
 export const addReview = (reviewQueryData: IAddQueryData) => {
-  let url = `http://localhost:8000/reviews`;
+  let url = `${process.env.REACT_APP_BASE_URL}/reviews`;
   return axios.post(url, reviewQueryData);
 };
 
 export const updateReview = (reviewQueryData: IUpdateQueryData) => {
   const { reviewId, ...updatedData } = reviewQueryData;
-  let url = `http://localhost:8000/reviews/${reviewId}`;
+  let url = `${process.env.REACT_APP_BASE_URL}/reviews/${reviewId}`;
   return axios.put(url, updatedData);
 };
 
 export const deleteReview = (reviewId: string) => {
-  let url = `http://localhost:8000/reviews/${reviewId}`;
+  let url = `${process.env.REACT_APP_BASE_URL}/reviews/${reviewId}`;
   return axios.delete(url);
 };
