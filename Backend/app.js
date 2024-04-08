@@ -5,6 +5,7 @@ const movieRoutes = require("./router/movies");
 const reviewRoutes = require("./router/reviews");
 const authRoutes = require("./router/auth");
 const dotenv = require("dotenv");
+const cors = require("cors");
 
 const app = express();
 dotenv.config();
@@ -12,6 +13,7 @@ dotenv.config();
 const DATABASE_URL = process.env.MONGODB_CONNECT_URL;
 const PORT = process.env.PORT;
 
+app.use(cors());
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
